@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Menu1_Fragment extends Fragment {
+public class Profile_Fragment extends Fragment {
 	View rootview;
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		rootview = inflater.inflate(R.layout.menu1_layout, container, false);
+		rootview = inflater.inflate(R.layout.profile_layout, container, false);
 		return rootview;
 	}
 	

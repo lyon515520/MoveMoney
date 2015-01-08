@@ -35,19 +35,22 @@ public final class R {
     public static final class id {
         public static final int action_example=0x7f080006;
         public static final int action_settings=0x7f080005;
-        public static final int container=0x7f080001;
-        public static final int drawer_layout=0x7f080000;
-        public static final int navigation_drawer=0x7f080002;
-        public static final int section_label=0x7f080003;
-        public static final int textView1=0x7f080004;
+        public static final int container=0x7f080002;
+        public static final int drawer_layout=0x7f080001;
+        public static final int navigation_drawer=0x7f080003;
+        public static final int section_label=0x7f080004;
+        public static final int textView1=0x7f080000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int fragment_main=0x7f030001;
-        public static final int fragment_navigation_drawer=0x7f030002;
-        public static final int menu1_layout=0x7f030003;
-        public static final int menu2_layout=0x7f030004;
-        public static final int menu3_layout=0x7f030005;
+        public static final int account_layout=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int alert_layout=0x7f030002;
+        public static final int demande_layout=0x7f030003;
+        public static final int fragment_main=0x7f030004;
+        public static final int fragment_navigation_drawer=0x7f030005;
+        public static final int profile_layout=0x7f030006;
+        public static final int recharge_layout=0x7f030007;
+        public static final int send_layout=0x7f030008;
     }
     public static final class menu {
         public static final int global=0x7f070000;

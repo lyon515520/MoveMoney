@@ -54,13 +54,22 @@ public class MainActivity extends Activity
     	
     	switch(position) {
     		case 0:
-    			objFragment = new Menu1_Fragment();
+    			objFragment = new Account_Fragment();
     			break;
     		case 1:
-    			objFragment = new Menu2_Fragment();
+    			objFragment = new Send_Fragment();
     			break;
     		case 2:
-    			objFragment = new Menu3_Fragment();
+    			objFragment = new Demande_Fragment();
+    			break;
+    		case 3:
+        		objFragment = new Recharge_Fragment();
+        		break;
+    		case 4:
+    			objFragment = new Alert_Fragment();
+    			break;
+    		case 5:
+    			objFragment = new Profile_Fragment();
     			break;
     	}
         // update the main content by replacing fragments
