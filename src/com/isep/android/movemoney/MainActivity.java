@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -71,6 +72,12 @@ public class MainActivity extends Activity
     		case 5:
     			objFragment = new Profile_Fragment();
     			break;
+    		case 6:
+    			objFragment = new Logout_Fragment();
+                /*Intent in = new Intent(this, LoginActivity.class);
+                startActivity(in);
+                finish();*/
+                break;
     	}
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
@@ -82,14 +89,25 @@ public class MainActivity extends Activity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_account);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_send);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_demande);
                 break;
+            case 4:
+            	mTitle = getString(R.string.title_recharge);
+            	break;
+            case 5:
+            	mTitle = getString(R.string.title_alert);
+            	break;
+            case 6:
+            	mTitle = getString(R.string.title_profile);
+            	break;
+            case 7:
+            	mTitle = getString(R.string.title_logout);
         }
     }
 
