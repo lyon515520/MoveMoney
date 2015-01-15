@@ -44,42 +44,42 @@
           <!-- Register Button -->
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="46dp"
                 android:ems="10"
-                android:hint="Phone number"
+                android:hint="Phone number *"
                 android:inputType="phone" >
 
                 <requestFocus />
             </EditText>
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Username" />
+                android:hint="Username *" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="Password *"
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/confirmationpwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Confirmation of password"
+                android:hint="Confirmation of password *"
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/invitationcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
