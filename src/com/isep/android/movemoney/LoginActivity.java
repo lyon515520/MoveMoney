@@ -1,22 +1,39 @@
 package com.isep.android.movemoney;
 
+import com.parse.ParseException;
+import com.parse.LogInCallback;
+import com.parse.ParseUser;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
-	@Override
+	
+	Button btnlogin;
+	
+	TextView btntoregister;
+	
+	EditText loginphone;
+	EditText loginpwd;
+	
+	String loginphonetxt;
+	String loginpwdtxt;
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setting default screen to login.xml
         setContentView(R.layout.login);
  
-        TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
+        btntoregister = (TextView) findViewById(R.id.link_to_register);
  
         // Listening to register new account link
-        registerScreen.setOnClickListener(new View.OnClickListener() {
+        btntoregister.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View v) {
                 // Switching to Register screen
@@ -26,15 +43,43 @@ public class LoginActivity extends Activity {
         });
         
         //setting access to activity_main.xml
-        TextView mainScreen = (TextView) findViewById(R.id.btnLogin);
+        btnlogin = (Button) findViewById(R.id.btnLogin);
+        loginphone = (EditText) findViewById(R.id.loginphone);
+		loginpwd = (EditText) findViewById(R.id.loginpwd);
         
         //Listening to login button
-        mainScreen.setOnClickListener(new View.OnClickListener() {
+        btnlogin.setOnClickListener(new View.OnClickListener() {
         	 
             public void onClick(View v) {
-                // Switching to Main screen
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
+            	
+            	loginphonetxt = loginphone.getText().toString();
+            	loginpwdtxt = loginpwd.getText().toString();
+            	
+            	ParseUser.logInInBackground(loginphonetxt, loginpwdtxt,
+            			new LogInCallback() {
+            		
+            		public void done(ParseUser user, ParseException e) {
+            			
+            			if (user != null) {
+							// If user exist and authenticated, send user to MainActivity.class
+							Intent i = new Intent(
+									LoginActivity.this,
+									MainActivity.class);
+							startActivity(i);
+							Toast.makeText(getApplicationContext(),
+									"Successfully Logged in",
+									Toast.LENGTH_LONG).show();
+							finish();
+						} else {
+							Toast.makeText(
+									getApplicationContext(),
+									"No such user exist, please signup",
+									Toast.LENGTH_LONG).show();
+						}
+            			
+            		}
+            		
+            	});
             }
         });
     }

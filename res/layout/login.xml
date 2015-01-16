@@ -40,6 +40,7 @@
 	          <!--  Email Label -->
 
 	          <EditText
+	              android:id="@+id/loginphone"
 	              android:layout_width="fill_parent"
 	              android:layout_height="wrap_content"
 	              android:layout_marginBottom="20dip"
@@ -51,6 +52,7 @@
 	          <!--  Password Label -->
 
 	          <EditText
+	              android:id="@+id/loginpwd"
 	              android:layout_width="fill_parent"
 	              android:layout_height="wrap_content"
 	              android:layout_marginTop="5dip"

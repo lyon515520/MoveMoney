@@ -29,7 +29,6 @@ public class RegisterActivity extends Activity {
 	String confirmationpwdtxt;
 	String invitationcodetxt;
 	
-	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set View to register.xml
@@ -80,13 +79,31 @@ public class RegisterActivity extends Activity {
 							"Please confirm your password",
 							Toast.LENGTH_LONG).show();
 				
+				} else if(phonetxt.length()!= 10 || !(phonetxt.startsWith("06") || phonetxt.startsWith("07"))) {
+					
+					Toast.makeText(getApplicationContext(),
+							"Please confirm your phone number",
+							Toast.LENGTH_LONG).show();
+					
+				} else if(pwd.length()<7) {
+					
+					Toast.makeText(getApplicationContext(),
+							"Password must be at least 6 characters",
+							Toast.LENGTH_LONG).show();	
+					
+				} else if(usernametxt.contains(" ")) {
+					
+					Toast.makeText(getApplicationContext(),
+							"Space is not allowed in Username",
+							Toast.LENGTH_LONG).show();	
+					
 				}else {
 					
 					ParseUser user = new ParseUser();
-					//user.put("phone_number", phonetxt);
-					user.setUsername(usernametxt);
+					user.put("nickname", usernametxt);
+					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
-					//user.put("invitation_code", invitationcodetxt);
+					user.put("invitation_code", invitationcodetxt);
 					
 					user.signUpInBackground(new SignUpCallback() {
 						
@@ -100,9 +117,8 @@ public class RegisterActivity extends Activity {
 										Toast.LENGTH_LONG).show();
 								
 								// Switching to Main screen
-								/*Intent i = new Intent(getApplicationContext(), MainActivity.class);
+								Intent i = new Intent(getApplicationContext(), MainActivity.class);
 				                startActivity(i);
-				                */
 								
 							} else {
 								
