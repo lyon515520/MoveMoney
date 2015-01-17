@@ -42,7 +42,7 @@ public final class R {
         public static final int container=0x7f080002;
         public static final int drawer_layout=0x7f080001;
         public static final int header=0x7f080005;
-        public static final int invitationcode=0x7f08000e;
+        public static final int invitor=0x7f08000e;
         public static final int link_to_login=0x7f080010;
         public static final int link_to_register=0x7f080009;
         public static final int loginphone=0x7f080006;

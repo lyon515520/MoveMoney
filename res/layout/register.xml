@@ -79,11 +79,12 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/invitationcode"
+                android:id="@+id/invitor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Invitation code" />
+                android:hint="Invitor"
+                android:inputType="phone" />
 
           <Button android:id="@+id/btnRegister"
                 android:layout_width="fill_parent"

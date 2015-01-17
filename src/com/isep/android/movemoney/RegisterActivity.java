@@ -21,13 +21,15 @@ public class RegisterActivity extends Activity {
 	EditText username;
 	EditText pwd;
 	EditText confirmationpwd;
-	EditText invitationcode;
+	EditText invitor;
 	
 	String phonetxt;
 	String usernametxt;
 	String pwdtxt;
 	String confirmationpwdtxt;
-	String invitationcodetxt;
+	String invitortxt;
+	
+	float credit = 50;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class RegisterActivity extends Activity {
         username = (EditText) findViewById(R.id.username);
         pwd = (EditText) findViewById(R.id.password);
         confirmationpwd = (EditText) findViewById(R.id.confirmationpwd);
-        invitationcode = (EditText) findViewById(R.id.invitationcode);
+        invitor = (EditText) findViewById(R.id.invitor);
  
         TextView loginScreen = (TextView) findViewById(R.id.link_to_login);
  
@@ -64,7 +66,7 @@ public class RegisterActivity extends Activity {
             	usernametxt = username.getText().toString();
             	pwdtxt = pwd.getText().toString();
             	confirmationpwdtxt = confirmationpwd.getText().toString();
-            	invitationcodetxt = invitationcode.getText().toString();
+            	invitortxt = invitor.getText().toString();
             	
             	// Force user to fill up the form
 				if (phonetxt.equals("") && usernametxt.equals("") && pwdtxt.equals("") && confirmationpwdtxt.equals("")) {
@@ -85,11 +87,17 @@ public class RegisterActivity extends Activity {
 							"Please confirm your phone number",
 							Toast.LENGTH_LONG).show();
 					
-				} else if(pwd.length()<7) {
+				} else if(pwdtxt.length()<6) {
 					
 					Toast.makeText(getApplicationContext(),
 							"Password must be at least 6 characters",
 							Toast.LENGTH_LONG).show();	
+					
+				} else if(pwdtxt.matches("[0-9]+") || pwdtxt.matches("[a-zA-Z]+")) {
+					
+					Toast.makeText(getApplicationContext(),
+							"Password must contain numbers and letters",
+							Toast.LENGTH_LONG).show();
 					
 				} else if(usernametxt.contains(" ")) {
 					
@@ -103,7 +111,8 @@ public class RegisterActivity extends Activity {
 					user.put("nickname", usernametxt);
 					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
-					user.put("invitation_code", invitationcodetxt);
+					user.put("credit", credit);
+					user.put("invitation_code", invitortxt);
 					
 					user.signUpInBackground(new SignUpCallback() {
 						
