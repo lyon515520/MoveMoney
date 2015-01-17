@@ -105,6 +105,12 @@ public class RegisterActivity extends Activity {
 							"Space is not allowed in Username",
 							Toast.LENGTH_LONG).show();	
 					
+				} else if(usernametxt.length()>10) {
+					
+					Toast.makeText(getApplicationContext(),
+							"Username must not longer than 10 characters",
+							Toast.LENGTH_LONG).show();	
+					
 				}else {
 					
 					ParseUser user = new ParseUser();

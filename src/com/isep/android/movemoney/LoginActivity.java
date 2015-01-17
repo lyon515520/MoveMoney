@@ -25,6 +25,9 @@ public class LoginActivity extends Activity {
 	String loginphonetxt;
 	String loginpwdtxt;
 	
+	SessionManager session;
+	
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setting default screen to login.xml
@@ -54,7 +57,9 @@ public class LoginActivity extends Activity {
             	
             	loginphonetxt = loginphone.getText().toString();
             	loginpwdtxt = loginpwd.getText().toString();
-            	
+
+            	session = new SessionManager(getApplicationContext());
+
             	ParseUser.logInInBackground(loginphonetxt, loginpwdtxt,
             			new LogInCallback() {
             		
@@ -62,6 +67,7 @@ public class LoginActivity extends Activity {
             			
             			if (user != null) {
 							// If user exist and authenticated, send user to MainActivity.class
+            				session.createUserSession(loginpwdtxt);
 							Intent i = new Intent(
 									LoginActivity.this,
 									MainActivity.class);
