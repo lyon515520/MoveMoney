@@ -34,6 +34,7 @@ public final class R {
         public static final int logo=0x7f020003;
     }
     public static final class id {
+        public static final int account_test=0x7f080000;
         public static final int action_example=0x7f080012;
         public static final int action_settings=0x7f080011;
         public static final int btnLogin=0x7f080008;
@@ -51,7 +52,6 @@ public final class R {
         public static final int password=0x7f08000c;
         public static final int phone=0x7f08000a;
         public static final int section_label=0x7f080004;
-        public static final int textView1=0x7f080000;
         public static final int username=0x7f08000b;
     }
     public static final class layout {
