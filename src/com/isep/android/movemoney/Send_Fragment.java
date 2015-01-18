@@ -1,5 +1,7 @@
 package com.isep.android.movemoney;
 
+import com.parse.ParseUser;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +18,13 @@ public class Send_Fragment extends Fragment {
 		
 		rootview = inflater.inflate(R.layout.send_layout, container, false);
 		
+		ParseUser user = ParseUser.getCurrentUser();
+		String test = user.getUsername();
+		
 		String message = "this is just a test";
 		TextView tv = (TextView) rootview.findViewById(R.id.send_test);
 		tv.setTextSize(40);
-		tv.setText(message);
+		tv.setText(test);
 		
 		
 		
