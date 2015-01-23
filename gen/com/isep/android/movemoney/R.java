@@ -42,7 +42,6 @@ public final class R {
         public static final int account_textView2=0x7f080002;
         public static final int account_textView3=0x7f080004;
         public static final int account_username=0x7f080001;
-        public static final int action_example=0x7f080020;
         public static final int action_settings=0x7f08001f;
         public static final int btnLogin=0x7f080013;
         public static final int btnRegister=0x7f08001c;
@@ -88,8 +87,7 @@ public final class R {
         public static final int main=0x7f070001;
     }
     public static final class string {
-        public static final int action_example=0x7f05000a;
-        public static final int action_settings=0x7f05000b;
+        public static final int action_settings=0x7f05000a;
         public static final int app_name=0x7f050000;
         public static final int navigation_drawer_close=0x7f050009;
         public static final int navigation_drawer_open=0x7f050008;
