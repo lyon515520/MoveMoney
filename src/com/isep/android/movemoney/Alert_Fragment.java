@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class Alert_Fragment extends Fragment {
 	View rootview;
@@ -28,34 +29,50 @@ public class Alert_Fragment extends Fragment {
 	        //* R.layout.alert_single is a file for ListView
 	        //* forth value is the value from map                               
 	        //* fifth is the id in xml
-	        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
-	            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	            {  
-	              
-	            	new AlertDialog.Builder(getActivity())
-	                .setTitle("Detail of Alert")
-	                .setMessage("This message should change according to the alert:")
-	                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-	                    public void onClick(DialogInterface dialog, int which) { 
-	                        // continue with delete
-	                    }
-	                 })
-	                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-	                    public void onClick(DialogInterface dialog, int which) { 
-	                        // do nothing
-	                    }
-	                 })
-	                .setIcon(android.R.drawable.ic_dialog_info)
-	                 .show();
-	            }
-
-	         });
+	       
 	        SimpleAdapter adapter = new SimpleAdapter(getActivity(), items, R.layout.alert_single, 
 	                new String[] {"title_alert","sender_alert","date_alert"}, 
 	                new int[] {R.id.title_alert, R.id.sender_alert, R.id.date_alert});
 	        //Adapter for ListView
 	        list.setAdapter(adapter);
 	        
+
+		
+		list.setItemsCanFocus(true);
+        
+        
+        
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
+        	
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {  
+              
+            	new AlertDialog.Builder(getActivity())
+                .setTitle(((TextView)view.findViewById(R.id.title_alert)).getText())
+                .setMessage("This message should change according to the alert:"+
+                '\n'+'\n'+
+                "Sender: "+
+                ((TextView)view.findViewById(R.id.sender_alert)).getText()+
+                '\n'+
+                "date: "+
+                ((TextView)view.findViewById(R.id.date_alert)).getText()
+                )
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) { 
+                        // continue with delete
+                    }
+                 })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) { 
+                        // do nothing
+                    }
+                 })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                 .show();
+            }
+
+         });
+        
 		return rootview;
 	}
 	
