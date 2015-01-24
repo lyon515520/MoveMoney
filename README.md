@@ -11,4 +11,4 @@ this is the Android Application of 3rd year's project in ISEP
 -----Author-----
 1. Ang LI
 2. Li ZHANG
-3. Julio DNONG
+3. Julio NDONG

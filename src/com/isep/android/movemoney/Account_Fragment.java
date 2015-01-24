@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 public class Account_Fragment extends Fragment {
 	View rootview;
