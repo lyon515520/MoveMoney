@@ -8,6 +8,9 @@
     <string name="title_recharge">Recharge</string><string name="title_alert">Alert</string><string name="title_profile">Profile</string><string name="title_logout">Logout</string><string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <color name="blue">#63DDEB</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#808080</color>
     
     
     
