@@ -45,6 +45,8 @@ public class Recharge_Fragment extends Fragment {
 					credit_new = credit + credit_add; 
 					user.put("credit", credit_new);
 					
+					user.saveInBackground();//update the data in Parse 
+					
 					Toast.makeText(getActivity().getApplicationContext(),
 							"Recharge successfully", Toast.LENGTH_LONG)
 							.show();
