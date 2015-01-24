@@ -29,7 +29,7 @@ public class RegisterActivity extends Activity {
 	String confirmationpwdtxt;
 	String invitortxt;
 	
-	float credit = 50;
+	double credit = 50.5;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -25,7 +25,7 @@ public class Profile_Fragment extends Fragment {
 		ParseUser user = ParseUser.getCurrentUser();
 		String username = user.getString("nickname");
 		String phonenumber = user.getUsername();
-		float credit = user.getInt("credit");
+		double credit = user.getDouble("credit");
 		
 		usernametv = (TextView) rootview.findViewById(R.id.profile_username);
 		phonenumbertv = (TextView) rootview.findViewById(R.id.profile_phonenumber);
