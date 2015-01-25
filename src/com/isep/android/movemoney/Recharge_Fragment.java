@@ -1,5 +1,6 @@
 package com.isep.android.movemoney;
 
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import android.app.Fragment;
@@ -29,7 +30,7 @@ public class Recharge_Fragment extends Fragment {
 		
 		recharge = (EditText) rootview.findViewById(R.id.recharge_editText1);
 		
-		btn_recharge = (Button) rootview.findViewById(R.id.recharge_button);
+		btn_recharge = (Button) rootview.findViewById(R.id.recharge_button);	
 		
 		btn_recharge.setOnClickListener(new View.OnClickListener() {
 
@@ -46,6 +47,19 @@ public class Recharge_Fragment extends Fragment {
 					user.put("credit", credit_new);
 					
 					user.saveInBackground();//update the data in Parse 
+					
+					ParseObject process = new ParseObject("Process");
+					process.put("process_credit", credit_add);
+					String name1 = user.getString("nickname");
+					String phonenumber1 = user.getString("username");
+					process.put("phonenumber1", phonenumber1);
+					process.put("phonenumber2", phonenumber1);
+					process.put("user1", name1);
+					process.put("user2", name1);
+					process.put("parent1", user);
+					process.put("parent2", user);
+					process.put("type", "recharge"); //it's means user1 send money to user2, type is recharge
+					process.saveInBackground();
 					
 					Toast.makeText(getActivity().getApplicationContext(),
 							"Recharge successfully", Toast.LENGTH_LONG)

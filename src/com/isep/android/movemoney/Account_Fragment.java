@@ -1,13 +1,22 @@
 package com.isep.android.movemoney;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +43,7 @@ public class Account_Fragment extends Fragment {
 		
 		credit_currenttv.setText(String.valueOf(credit_current)+" euros");
 		
-		ArrayList<HashMap<String, Object>> items = getItems(); 
+		ArrayList<HashMap<String, Object>> items = getItems();
 		
 		ListView list = (ListView)rootview.findViewById(R.id.ListView_account);
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(), items, R.layout.account_single, 
@@ -48,21 +57,43 @@ public class Account_Fragment extends Fragment {
 	}
 	
 	private ArrayList<HashMap<String, Object>> getItems() {
-        ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
-        for(int i = 0; i < 5; i++) {
+        final ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+            
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+	        query.whereEqualTo("parent1",ParseUser.getCurrentUser());
+	        
+	        query.findInBackground(new FindCallback<ParseObject>() {
 
-            HashMap<String, Object> map = new HashMap<String, Object>();
+	            @Override
+	            public void done(List<ParseObject> objects, ParseException e) {
+	                if (e == null) {
+	                	
+	                	for(int i = 0; i<objects.size(); i++){
+	                		
+	                		ParseObject test = objects.get(i);
+	                		HashMap<String, Object> map = new HashMap<String, Object>();
+	                		String name = test.getString("user1");
+	                		double credit = test.getDouble("process_credit");
+	                		String phonenumber = test.getString("phonenumber1");
+	                		Date recharge_date = test.getUpdatedAt();
+	                		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+	                		String recharge_date_string = df.format(recharge_date);
+	                		
+	                		map.put("accountlist_username", name);
+	                		map.put("accountlist_credit", "+"+credit);
+	                        map.put("accountlist_phonenumber", phonenumber);
+	                        map.put("accountlist_date", recharge_date_string);
+	                        items.add(map);
+	                	}
+	               
+	                } else {
+	                    Log.d("App", "Error: " + e.getMessage());
+	                }
+	            }
 
-            map.put("accountlist_username", "PierreLI"+i);
-            //username
-            map.put("accountlist_credit", "10"+i+" euros");
-            //credit
-            map.put("accountlist_phonenumber", "066759707"+i);
-            //phonenumber
-            map.put("accountlist_date", "Jan 2"+i+", 2015");
-            //date
-            items.add(map);
-        }
+				
+	        });
+
         return items;
     }
 	
