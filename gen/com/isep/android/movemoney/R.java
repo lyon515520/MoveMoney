@@ -48,7 +48,7 @@ public final class R {
         public static final int accountlist_date=0x7f090006;
         public static final int accountlist_phonenumber=0x7f090005;
         public static final int accountlist_username=0x7f090003;
-        public static final int action_settings=0x7f090026;
+        public static final int action_settings=0x7f090028;
         public static final int btnLogin=0x7f090014;
         public static final int btnRegister=0x7f090023;
         public static final int confirmationpwd=0x7f090021;
@@ -74,7 +74,9 @@ public final class R {
         public static final int recharge_button=0x7f09001d;
         public static final int recharge_editText1=0x7f09001c;
         public static final int section_label=0x7f090010;
-        public static final int send_test=0x7f090025;
+        public static final int send_amount=0x7f090026;
+        public static final int send_button=0x7f090027;
+        public static final int send_target=0x7f090025;
         public static final int sender_alert=0x7f09000d;
         public static final int title_alert=0x7f09000c;
         public static final int username=0x7f09001f;

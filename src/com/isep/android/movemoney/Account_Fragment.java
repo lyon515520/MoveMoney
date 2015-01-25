@@ -72,15 +72,32 @@ public class Account_Fragment extends Fragment {
 	                		
 	                		ParseObject test = objects.get(i);
 	                		HashMap<String, Object> map = new HashMap<String, Object>();
+	                		
 	                		String name = test.getString("user1");
 	                		double credit = test.getDouble("process_credit");
 	                		String phonenumber = test.getString("phonenumber1");
+	                		
 	                		Date recharge_date = test.getUpdatedAt();
 	                		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	                		String recharge_date_string = df.format(recharge_date);
 	                		
+	                		String money_situation = test.getString("money_situation");
+	                		String money_situation_symbol = null;
+	                		
+	                		if(money_situation.equals("positive")){
+	                			
+	                			money_situation_symbol = "+";
+	                			
+	                		} else {
+	                			
+	                			money_situation_symbol = "-";
+	                			
+	                		}
+	                		
+	                		String credit_String = String.valueOf(credit);
+	                		
 	                		map.put("accountlist_username", name);
-	                		map.put("accountlist_credit", "+"+credit);
+	                		map.put("accountlist_credit", money_situation_symbol+credit_String);
 	                        map.put("accountlist_phonenumber", phonenumber);
 	                        map.put("accountlist_date", recharge_date_string);
 	                        items.add(map);
