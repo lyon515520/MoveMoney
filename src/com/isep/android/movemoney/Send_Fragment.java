@@ -65,7 +65,7 @@ public class Send_Fragment extends Fragment {
 					//process.put("parent1", user);                           
 					
 					ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
-					query.whereEqualTo("username", "0667597076");
+					query.whereEqualTo("username", send_numbertxt);
 					query.findInBackground(new FindCallback<ParseObject>() {
 
 						@Override
