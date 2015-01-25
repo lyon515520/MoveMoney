@@ -13,6 +13,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+@SuppressLint("SimpleDateFormat") 
 public class Account_Fragment extends Fragment {
 	View rootview;
 	
@@ -34,6 +36,7 @@ public class Account_Fragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
+
 		rootview = inflater.inflate(R.layout.account_layout, container, false);
 		
 		ParseUser user = ParseUser.getCurrentUser();
@@ -50,7 +53,11 @@ public class Account_Fragment extends Fragment {
                 new String[] {"accountlist_username","accountlist_credit","accountlist_phonenumber","accountlist_date"}, 
                 new int[] {R.id.accountlist_username, R.id.accountlist_credit, R.id.accountlist_phonenumber, R.id.accountlist_date});
 		
+		adapter.notifyDataSetChanged();
+		
 		list.setAdapter(adapter);
+		
+		//list.invalidateViews();
 		
 		return rootview;
 	
@@ -59,8 +66,12 @@ public class Account_Fragment extends Fragment {
 	private ArrayList<HashMap<String, Object>> getItems() {
         final ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
             
+        	String currentUsername;
+        	currentUsername = ParseUser.getCurrentUser().getString("username");
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-	        query.whereEqualTo("parent1",ParseUser.getCurrentUser());
+	        query.whereEqualTo("phonenumber2",currentUsername);
+	        query.whereEqualTo("process_situation", "finish");
+	        query.addDescendingOrder("updatedAt");
 	        
 	        query.findInBackground(new FindCallback<ParseObject>() {
 
@@ -82,7 +93,7 @@ public class Account_Fragment extends Fragment {
 	                		String recharge_date_string = df.format(recharge_date);
 	                		
 	                		String money_situation = test.getString("money_situation");
-	                		String money_situation_symbol = null;
+	                		String money_situation_symbol;
 	                		
 	                		if(money_situation.equals("positive")){
 	                			
@@ -95,6 +106,7 @@ public class Account_Fragment extends Fragment {
 	                		}
 	                		
 	                		String credit_String = String.valueOf(credit);
+	                		
 	                		
 	                		map.put("accountlist_username", name);
 	                		map.put("accountlist_credit", money_situation_symbol+credit_String);

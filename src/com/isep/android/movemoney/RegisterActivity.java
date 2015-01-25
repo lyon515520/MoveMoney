@@ -1,6 +1,8 @@
 package com.isep.android.movemoney;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -29,7 +31,7 @@ public class RegisterActivity extends Activity {
 	String confirmationpwdtxt;
 	String invitortxt;
 	
-	double credit = 50.5;
+	double credit = 50;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +121,15 @@ public class RegisterActivity extends Activity {
 					user.setPassword(pwdtxt);
 					user.put("credit", credit);
 					user.put("invitation_code", invitortxt);
+					
+					ParseObject user_copy = new ParseObject("User_copy");
+					user_copy.put("nickname", usernametxt);
+					user_copy.put("username", phonetxt);
+					user_copy.put("credit", credit);
+					user_copy.put("invitation_code", invitortxt);
+					
+					user_copy.saveInBackground();
+					
 					
 					user.signUpInBackground(new SignUpCallback() {
 						

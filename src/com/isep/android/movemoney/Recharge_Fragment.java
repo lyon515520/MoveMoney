@@ -56,8 +56,8 @@ public class Recharge_Fragment extends Fragment {
 					process.put("phonenumber2", phonenumber1);
 					process.put("user1", name1);
 					process.put("user2", name1);
-					process.put("parent1", user);
-					process.put("parent2", user);
+					//process.put("parent1", user);
+					//process.put("parent2", user);
 					process.put("process_situation", "finish");
 					process.put("money_situation", "positive");
 					process.put("type", "recharge"); //it's means user1 send money to user2, type is recharge

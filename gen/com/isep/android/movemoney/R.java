@@ -39,9 +39,8 @@ public final class R {
         public static final int logo=0x7f020003;
     }
     public static final class id {
-        public static final int LinearLayout01=0x7f09000a;
         public static final int ListView_account=0x7f090002;
-        public static final int MyListView=0x7f09000b;
+        public static final int ListView_alert=0x7f09000a;
         public static final int account_credit=0x7f090001;
         public static final int account_headtext=0x7f090000;
         public static final int accountlist_credit=0x7f090004;
@@ -49,11 +48,14 @@ public final class R {
         public static final int accountlist_phonenumber=0x7f090005;
         public static final int accountlist_username=0x7f090003;
         public static final int action_settings=0x7f090028;
+        public static final int alertlist_credit=0x7f09000c;
+        public static final int alertlist_date=0x7f09000e;
+        public static final int alertlist_phonenumber=0x7f09000d;
+        public static final int alertlist_username=0x7f09000b;
         public static final int btnLogin=0x7f090014;
         public static final int btnRegister=0x7f090023;
         public static final int confirmationpwd=0x7f090021;
         public static final int container=0x7f090008;
-        public static final int date_alert=0x7f09000e;
         public static final int demande_layout=0x7f09000f;
         public static final int drawer_layout=0x7f090007;
         public static final int header=0x7f090011;
@@ -77,8 +79,6 @@ public final class R {
         public static final int send_amount=0x7f090026;
         public static final int send_button=0x7f090027;
         public static final int send_target=0x7f090025;
-        public static final int sender_alert=0x7f09000d;
-        public static final int title_alert=0x7f09000c;
         public static final int username=0x7f09001f;
     }
     public static final class layout {
