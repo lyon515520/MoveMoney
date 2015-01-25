@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal" >
-
-    <TextView
-        android:id="@+id/demande_layout"
-        android:layout_width="wrap_content"
+    
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="this is the layout of demande"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/demande_target"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:hint="Mobile number"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+        
+        <EditText
+            android:id="@+id/demande_amount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:hint="Amount"
+            android:inputType="numberDecimal" >
+        </EditText>
+            
+        <Button
+            android:id="@+id/demande_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:padding="20dp"
+            android:text="Demande Now" />
+
+    </LinearLayout>
 
 </RelativeLayout>

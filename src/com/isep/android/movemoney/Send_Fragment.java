@@ -67,18 +67,28 @@ public class Send_Fragment extends Fragment {
 					ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
 					query.whereEqualTo("username", send_numbertxt);
 					query.findInBackground(new FindCallback<ParseObject>() {
-
+						
 						@Override
 						public void done(List<ParseObject> userList,ParseException e) {
 							// TODO Auto-generated method stub
-							if(userList.size()!= 0) {
+							if(e == null) {
 								
-								ParseObject userData = userList.get(0);
-								//process.put("parent2", userData.getObjectId());
-								process.put("user2", userData.getString("nickname"));
-								process.put("phonenumber2", send_numbertxt);
-								//process.put("user2", "test");
-								process.saveInBackground();
+								try {
+									
+									ParseObject userData = userList.get(0);
+									//process.put("parent2", userData.getObjectId());
+									process.put("user2", userData.getString("nickname"));
+									process.put("phonenumber2", send_numbertxt);
+									//process.put("user2", "test");
+									process.saveInBackground();
+									
+								} catch(IndexOutOfBoundsException r) {
+									
+									Toast.makeText(getActivity().getApplicationContext(),
+											"Enter a correct mobile number!", Toast.LENGTH_LONG)
+											.show();
+									
+								}
 								
 							} else {
 								
@@ -87,8 +97,6 @@ public class Send_Fragment extends Fragment {
 							}
 						}
 					});
-					
-					
 					
 					Toast.makeText(getActivity().getApplicationContext(),
 							"Transfere successfully", Toast.LENGTH_LONG)

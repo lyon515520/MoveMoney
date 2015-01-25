@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ems="10"
-            android:hint="Input Phone number"
+            android:hint="Mobile number"
             android:inputType="numberDecimal" >
 
             <requestFocus />
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:ems="10"
-            android:hint="Input Amount"
+            android:hint="Amount"
             android:inputType="numberDecimal" >
         </EditText>
             
