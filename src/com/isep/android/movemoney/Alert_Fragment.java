@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 @SuppressLint("SimpleDateFormat") 
 public class Alert_Fragment extends Fragment {
@@ -40,8 +41,8 @@ public class Alert_Fragment extends Fragment {
 	    ArrayList<HashMap<String, Object>> items = getItems();
 	       
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), items, R.layout.alert_single, 
-                new String[] {"alertlist_username","alertlist_credit","alertlist_phonenumber","alertlist_date"}, 
-                new int[] {R.id.alertlist_username, R.id.alertlist_credit, R.id.alertlist_phonenumber, R.id.alertlist_date});
+                new String[] {"alertlist_username","alertlist_credit","alertlist_phonenumber","alertlist_date","alertlist_id_process"}, 
+                new int[] {R.id.alertlist_username, R.id.alertlist_credit, R.id.alertlist_phonenumber, R.id.alertlist_date, R.id.alertlist_id_process});
 	    
         adapter.notifyDataSetChanged();
         
@@ -52,25 +53,80 @@ public class Alert_Fragment extends Fragment {
         
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
         	
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id)
             {  
               
             	new AlertDialog.Builder(getActivity())
-                .setTitle(((TextView)view.findViewById(R.id.alertlist_phonenumber)).getText())
-                .setMessage("This message should change according to the alert:"+
-                '\n'+'\n'+
-                "Sender: "+
+                .setTitle("Request")
+                .setMessage(
+        		"Amount:  "+
+                ((TextView)view.findViewById(R.id.alertlist_credit)).getText()+"\u20ac"+
+                '\n'+
+                "Demander:  "+
                 ((TextView)view.findViewById(R.id.alertlist_username)).getText()+
                 '\n'+
-                "date: "+
+                "Mobile:  "+
+                ((TextView)view.findViewById(R.id.alertlist_phonenumber)).getText()+
+                '\n'+
+                "Date:  "+
                 ((TextView)view.findViewById(R.id.alertlist_date)).getText()
+                +'\n'
+                
                 )
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) { 
-                        // continue with delete
+                    	String id_Process = (String) ((TextView)view.findViewById(R.id.alertlist_id_process)).getText();
+                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+    					try {
+							query.get(id_Process);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+    					query.findInBackground(new FindCallback<ParseObject>() {
+
+    						@Override
+    						public void done(List<ParseObject> processList,ParseException e) {
+    							// TODO Auto-generated method stub
+    							if(processList.size()!= 0) {
+    								
+    								ParseObject processData = processList.get(0);
+    								//process.put("parent2", userData.getObjectId());
+    								processData.put("process_situation", "finish");
+    								
+    								processData.saveInBackground();
+    								
+    							} else {
+    								
+    								Log.d("App", "Error: " + e.getMessage());
+    								
+    							}
+    						}
+    					});
+    					Toast.makeText(getActivity(),
+    							((TextView)view.findViewById(R.id.alertlist_id_process)).getText()+id_Process,
+									Toast.LENGTH_LONG).show();
+                    	/*
+                    	String id_Process = (String) ((TextView)view.findViewById(R.id.alertlist_id_process)).getText();
+                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+                    	ParseObject process = new ParseObject("Process");
+
+						try {
+							process = query.get(id_Process);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						String temp=process.getObjectId();
+    					process.put("process_situation", "finished");
+    					Toast.makeText(getActivity(),
+    							process.getString("process_credit"+'\n'+temp),
+									Toast.LENGTH_LONG).show();
+    					process.saveInBackground();
+                    	*/
                     }
                  })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) { 
                         // do nothing
                     }
@@ -116,6 +172,8 @@ public class Alert_Fragment extends Fragment {
 	                		String money_situation = test.getString("money_situation");
 	                		String money_situation_symbol;
 	                		
+	                		String id_process=test.getObjectId();
+	                		
 	                		if(money_situation.equals("positive")){
 	                			
 	                			money_situation_symbol = "+";
@@ -133,6 +191,7 @@ public class Alert_Fragment extends Fragment {
 	                		map.put("alertlist_credit", money_situation_symbol+credit_String);
 	                        map.put("alertlist_phonenumber", phonenumber);
 	                        map.put("alertlist_date", recharge_date_string);
+	                        map.put("alertlist_id_process", id_process);
 	                        items.add(map);
 	                	}
 	               

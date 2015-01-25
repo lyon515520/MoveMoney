@@ -18,9 +18,19 @@
 	        android:layout_marginLeft="5dip"
 	        android:layout_marginRight="5dip"
 	        android:layout_marginTop="5dip"
-	        android:layout_weight="1"
+	        android:layout_weight="0.5"
 	        android:text="PierreLI"
 	        android:textSize="20sp" />
+	    <TextView
+	        android:id="@+id/alertlist_id_process"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dip"
+	        android:layout_marginRight="5dip"
+	        android:layout_marginTop="5dip"
+	        android:layout_weight="0.5"
+	        android:textSize="20sp"
+ 	        android:visibility="invisible"/>
 
 	    <TextView
 	        android:id="@+id/alertlist_credit"
