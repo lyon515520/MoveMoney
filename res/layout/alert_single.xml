@@ -22,7 +22,31 @@
             android:visibility="invisible" />
         
         <TextView
-            android:id="@+id/alertlist_phonenumber_starter"
+            android:id="@+id/alertlist_phonenumber_receiver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/alertlist_money_situation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/alertlist_index"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/alertlist_credit_absolute"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"

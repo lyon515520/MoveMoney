@@ -54,7 +54,7 @@ public class Send_Fragment extends Fragment {
 					
 					final ParseObject process = new ParseObject("Process");
 					
-					process.put("money_situation", "positive");
+					process.put("money_situation", "negative");
 					process.put("process_situation", "unfinish");
 					process.put("type", "send");
 					process.put("process_credit", send_amounttxt);

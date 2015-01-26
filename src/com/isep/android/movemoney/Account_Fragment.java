@@ -55,8 +55,29 @@ public class Account_Fragment extends Fragment {
 		
 		ListView list = (ListView)rootview.findViewById(R.id.ListView_account);
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(), items, R.layout.account_single, 
-                new String[] {"accountlist_username","accountlist_credit","accountlist_phonenumber","accountlist_date"}, 
-                new int[] {R.id.accountlist_username, R.id.accountlist_credit, R.id.accountlist_phonenumber, R.id.accountlist_date});
+                new String[] {
+			
+					"accountlist_username",
+					"accountlist_credit",
+					"accountlist_phonenumber",
+					"accountlist_date",
+					"accountlist_phonenumber_receiver",
+					"alertlist_money_situation"
+				
+				}, 
+                
+				new int[] {
+			
+					R.id.accountlist_username, 
+					R.id.accountlist_credit, 
+					R.id.accountlist_phonenumber, 
+					R.id.accountlist_date,
+					R.id.accountlist_phonenumber_receiver,
+					R.id.accountlist_money_situation
+				
+				}
+		
+		);
 		
 		adapter.notifyDataSetChanged();
 		
@@ -74,7 +95,7 @@ public class Account_Fragment extends Fragment {
         	String currentUsername;
         	currentUsername = ParseUser.getCurrentUser().getString("username");
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-	        query.whereEqualTo("phonenumber2",currentUsername);
+	        //query.whereEqualTo("phonenumber2",currentUsername);
 	        query.whereEqualTo("process_situation", "finish");
 	        query.addDescendingOrder("updatedAt");
 	        
@@ -100,6 +121,9 @@ public class Account_Fragment extends Fragment {
 	                		String money_situation = test.getString("money_situation");
 	                		String money_situation_symbol;
 	                		
+	                		String name_starter = test.getString("user2");
+	                		String phonenumber_receiver = test.getString("phonenumber2");
+	                		
 	                		if(money_situation.equals("positive")){
 	                			
 	                			money_situation_symbol = "+";
@@ -112,12 +136,30 @@ public class Account_Fragment extends Fragment {
 	                		
 	                		String credit_String = String.valueOf(credit);
 	                		
+	                		ParseUser user = ParseUser.getCurrentUser();
 	                		
-	                		map.put("accountlist_username", name);
-	                		map.put("accountlist_credit", money_situation_symbol+credit_String);
-	                        map.put("accountlist_phonenumber", phonenumber);
-	                        map.put("accountlist_date", recharge_date_string);
-	                        items.add(map);
+	                		if(!phonenumber.equals(user.getUsername())) {
+	                		
+	                			map.put("accountlist_username", name);
+		                		map.put("accountlist_credit", money_situation_symbol+credit_String);
+		                        map.put("accountlist_phonenumber", phonenumber);
+		                        map.put("accountlist_date", recharge_date_string);
+		                        map.put("accountlist_phonenumber_receiver", phonenumber_receiver);
+		                        map.put("accountlist_money_situation", money_situation);
+		                        items.add(map);
+	                        
+	                		} else {
+	                			
+	                			map.put("accountlist_username", name_starter);
+		                		map.put("accountlist_credit", money_situation_symbol+credit_String);
+		                        map.put("accountlist_phonenumber", phonenumber_receiver);
+		                        map.put("accountlist_date", recharge_date_string);
+		                        map.put("accountlist_phonenumber_receiver", phonenumber_receiver);
+		                        map.put("accountlist_money_situation", money_situation);
+		                        items.add(map);
+	                			
+	                		}
+	                		
 	                	}
 	               
 	                } else {

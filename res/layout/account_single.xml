@@ -11,6 +11,22 @@
         android:layout_height="wrap_content"
         android:layout_weight="2">
         
+        <TextView
+            android:id="@+id/accountlist_phonenumber_receiver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/accountlist_money_situation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
 	    <TextView
 	        android:id="@+id/accountlist_username"
 	        android:layout_width="wrap_content"

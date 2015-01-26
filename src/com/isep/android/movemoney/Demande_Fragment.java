@@ -54,7 +54,7 @@ public class Demande_Fragment extends Fragment {
 					
 					final ParseObject process = new ParseObject("Process");
 					
-					process.put("money_situation", "negative");
+					process.put("money_situation", "positive");
 					process.put("process_situation", "unfinish");
 					process.put("type", "demande");
 					process.put("process_credit", demande_amounttxt);
@@ -62,7 +62,7 @@ public class Demande_Fragment extends Fragment {
 					ParseUser user = ParseUser.getCurrentUser();
 					 
 					process.put("user1", user.getString("nickname"));
-					process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Sender in Parse
+					process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Demander in Parse
 					//process.put("parent1", user);                           
 					
 					ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
