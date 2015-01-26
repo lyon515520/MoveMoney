@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +122,6 @@ public class Alert_Fragment extends Fragment {
 	                    	String id_processtxt = id_process.getText().toString();
 	                    	
 	                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-	                    	
 	                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
 	
 								public void done(ParseObject processData,ParseException ee) {
@@ -134,13 +134,15 @@ public class Alert_Fragment extends Fragment {
 										
 										String phonenumber_current = user.getUsername();
 										
+										String phonenumber_actor = processData.getString("phonenumber1");
+										
 										if(money_situation.equals("positive")) {
 											
 											//double credit_new = credit_old - credit_transfer;
 											//user.put("credit", credit_new);
-											ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
-											query.whereEqualTo("username", phonenumber_current);
-											query.findInBackground(new FindCallback<ParseObject>() {
+											ParseQuery<ParseObject> query1 = ParseQuery.getQuery("User_copy");
+											query1.whereEqualTo("username", phonenumber_current);
+											query1.findInBackground(new FindCallback<ParseObject>() {
 												
 												@Override
 												public void done(List<ParseObject> userList, ParseException e) {
@@ -155,12 +157,38 @@ public class Alert_Fragment extends Fragment {
 														
 													} else {
 														
-														// to do the code here
+														Log.d("App", "Error: " + e.getMessage());
 														
 													}
 												}
 												
 											});
+											
+											/*this is the activity of the Actor(who starts the activity)*/
+											ParseQuery<ParseObject> query2 = ParseQuery.getQuery("User_copy");
+											query2.whereEqualTo("username", phonenumber_actor);
+											query2.findInBackground(new FindCallback<ParseObject>() {
+												
+												@Override
+												public void done(List<ParseObject> userList, ParseException e) {
+													// TODO Auto-generated method stub
+													if(e == null) {
+														
+														ParseObject userData = userList.get(0);
+														double credit = userData.getDouble("credit");
+														double credit_new = credit + credit_transfer;
+														userData.put("credit", credit_new);
+														userData.saveInBackground();
+														
+													} else {
+														
+														Log.d("App", "Error: " + e.getMessage());
+														
+													}
+												}
+												
+											});
+											
 											
 										} else {
 											
@@ -183,7 +211,32 @@ public class Alert_Fragment extends Fragment {
 														
 													} else {
 														
-														// to do the code here
+														Log.d("App", "Error: " + e.getMessage());
+														
+													}
+												}
+												
+											});
+											
+											/*this is the activity of the Actor(who starts the activity)*/
+											ParseQuery<ParseObject> query2 = ParseQuery.getQuery("User_copy");
+											query2.whereEqualTo("username", phonenumber_actor);
+											query2.findInBackground(new FindCallback<ParseObject>() {
+												
+												@Override
+												public void done(List<ParseObject> userList, ParseException e) {
+													// TODO Auto-generated method stub
+													if(e == null) {
+														
+														ParseObject userData = userList.get(0);
+														double credit = userData.getDouble("credit");
+														double credit_new = credit - credit_transfer;
+														userData.put("credit", credit_new);
+														userData.saveInBackground();
+														
+													} else {
+														
+														Log.d("App", "Error: " + e.getMessage());
 														
 													}
 												}
@@ -199,12 +252,11 @@ public class Alert_Fragment extends Fragment {
 										
 									} else {
 										
-										// To do the code here
+										Log.d("App", "Error: " + ee.getMessage());
 										
 									}
 									
 								}
-								
 								
 	                    	});
 	                    	
