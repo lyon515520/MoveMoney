@@ -3,6 +3,7 @@ package com.isep.android.movemoney;
 import java.util.List;
 
 import com.parse.FindCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -58,6 +59,7 @@ public class Send_Fragment extends Fragment {
 					process.put("type", "send");
 					process.put("process_credit", send_amounttxt);
 					
+					
 					ParseUser user = ParseUser.getCurrentUser();
 					 
 					process.put("user1", user.getString("nickname"));
@@ -80,6 +82,13 @@ public class Send_Fragment extends Fragment {
 									process.put("user2", userData.getString("nickname"));
 									process.put("phonenumber2", send_numbertxt);
 									//process.put("user2", "test");
+									
+									ParseACL acl = new ParseACL();
+									acl.setPublicReadAccess(true);
+									acl.setPublicWriteAccess(true);
+									
+									process.setACL(acl);
+									
 									process.saveInBackground();
 									
 								} catch(IndexOutOfBoundsException r) {

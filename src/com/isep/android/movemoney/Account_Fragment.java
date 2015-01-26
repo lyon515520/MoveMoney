@@ -42,7 +42,6 @@ public class Account_Fragment extends Fragment {
 		rootview = inflater.inflate(R.layout.account_layout, container, false);
 		
 		InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-	    // only will trigger it if no physical keyboard is open
 	    mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 		
 		ParseUser user = ParseUser.getCurrentUser();

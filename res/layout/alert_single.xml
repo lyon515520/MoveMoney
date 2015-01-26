@@ -29,8 +29,7 @@
 	        android:layout_marginRight="5dip"
 	        android:layout_marginTop="5dip"
 	        android:layout_weight="0.5"
-	        android:textSize="20sp"
- 	        android:visibility="invisible"/>
+	        android:textSize="20sp"/>
 
 	    <TextView
 	        android:id="@+id/alertlist_credit"

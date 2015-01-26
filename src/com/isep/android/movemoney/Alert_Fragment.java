@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -16,6 +17,7 @@ import com.parse.ParseUser;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -35,7 +38,12 @@ public class Alert_Fragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		rootview = inflater.inflate(R.layout.alert_layout, container, false);
+		
+		InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+	    mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		
 		ListView list = (ListView)rootview.findViewById(R.id.ListView_alert);
 		 
 	    ArrayList<HashMap<String, Object>> items = getItems();
@@ -44,7 +52,7 @@ public class Alert_Fragment extends Fragment {
                 new String[] {"alertlist_username","alertlist_credit","alertlist_phonenumber","alertlist_date","alertlist_id_process"}, 
                 new int[] {R.id.alertlist_username, R.id.alertlist_credit, R.id.alertlist_phonenumber, R.id.alertlist_date, R.id.alertlist_id_process});
 	    
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
         
         //Adapter for ListView
 	    list.setAdapter(adapter);
@@ -74,61 +82,53 @@ public class Alert_Fragment extends Fragment {
                 
                 )
                 .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                	
                     public void onClick(DialogInterface dialog, int which) { 
-                    	String id_Process = (String) ((TextView)view.findViewById(R.id.alertlist_id_process)).getText();
+                    	
+                    	TextView id_process = (TextView) rootview.findViewById(R.id.alertlist_id_process);
+                    	String id_processtxt = id_process.getText().toString();
+                    	
                     	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-    					try {
-							query.get(id_Process);
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-    					query.findInBackground(new FindCallback<ParseObject>() {
+                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
 
-    						@Override
-    						public void done(List<ParseObject> processList,ParseException e) {
-    							// TODO Auto-generated method stub
-    							if(processList.size()!= 0) {
-    								
-    								ParseObject processData = processList.get(0);
-    								//process.put("parent2", userData.getObjectId());
-    								processData.put("process_situation", "finish");
-    								
-    								processData.saveInBackground();
-    								
-    							} else {
-    								
-    								Log.d("App", "Error: " + e.getMessage());
-    								
-    							}
-    						}
-    					});
-    					Toast.makeText(getActivity(),
-    							((TextView)view.findViewById(R.id.alertlist_id_process)).getText()+id_Process,
-									Toast.LENGTH_LONG).show();
-                    	/*
-                    	String id_Process = (String) ((TextView)view.findViewById(R.id.alertlist_id_process)).getText();
-                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-                    	ParseObject process = new ParseObject("Process");
-
-						try {
-							process = query.get(id_Process);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						String temp=process.getObjectId();
-    					process.put("process_situation", "finished");
-    					Toast.makeText(getActivity(),
-    							process.getString("process_credit"+'\n'+temp),
-									Toast.LENGTH_LONG).show();
-    					process.saveInBackground();
-                    	*/
+							public void done(ParseObject processData,ParseException ee) {
+								if(ee == null){
+									
+									processData.put("process_situation", "finish");
+									processData.saveInBackground();
+								
+								}
+								
+							}
+							
+							
+                    	});
+                    	
                     }
+                    
                  })
-                .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) { 
-                        // do nothing
+                    	
+                    	TextView id_process = (TextView) rootview.findViewById(R.id.alertlist_id_process);
+                    	String id_processtxt = id_process.getText().toString();
+                    	
+                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
+
+							public void done(ParseObject processData,ParseException ee) {
+								if(ee == null){
+									
+									processData.deleteInBackground();
+									processData.saveInBackground();
+								
+								}
+								
+							}
+							
+							
+                    	});
+                    	
                     }
                  })
                 .setIcon(android.R.drawable.ic_dialog_info)
@@ -221,8 +221,6 @@ public class Alert_Fragment extends Fragment {
              }
           })
          .setIcon(android.R.drawable.ic_dialog_info)
-          .show();
-	       // TextView textview = (TextView)findViewById(R.id.textView1);
-	       // textview.setText("Äãµã»÷ÁËButton");        
+          .show();    
 	    }
 }
