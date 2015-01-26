@@ -1,6 +1,12 @@
 package com.isep.android.movemoney;
 
+import java.util.List;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.Fragment;
@@ -42,11 +48,36 @@ public class Recharge_Fragment extends Fragment {
 				if(credit_add > 0) {
 						
 					ParseUser user = ParseUser.getCurrentUser();
-					credit = user.getDouble("credit");
-					credit_new = credit + credit_add; 
-					user.put("credit", credit_new);
+					//credit = user.getDouble("credit");
+					//credit_new = credit + credit_add; 
+					//user.put("credit", credit_new);
+					String phonenumber_current = user.getUsername();
 					
-					user.saveInBackground();//update the data in Parse 
+					//user.saveInBackground();//update the data in Parse 
+					ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
+					query.whereEqualTo("username", phonenumber_current);
+					query.findInBackground(new FindCallback<ParseObject>() {
+						
+						@Override
+						public void done(List<ParseObject> userList, ParseException e) {
+							// TODO Auto-generated method stub
+							if(e == null) {
+								
+								ParseObject userData = userList.get(0);
+								credit = userData.getDouble("credit");
+								credit_new = credit + credit_add;
+								userData.put("credit", credit_new);
+								userData.saveInBackground();
+								
+							} else {
+								
+								// to do the code here
+								
+							}
+						}
+						
+					});
+					
 					
 					ParseObject process = new ParseObject("Process");
 					process.put("process_credit", credit_add);

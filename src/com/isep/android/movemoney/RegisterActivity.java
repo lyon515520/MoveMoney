@@ -1,5 +1,6 @@
 package com.isep.android.movemoney;
 
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -119,7 +120,7 @@ public class RegisterActivity extends Activity {
 					user.put("nickname", usernametxt);
 					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
-					user.put("credit", credit);
+					//user.put("credit", credit);
 					user.put("invitation_code", invitortxt);
 					
 					ParseObject user_copy = new ParseObject("User_copy");
@@ -127,6 +128,12 @@ public class RegisterActivity extends Activity {
 					user_copy.put("username", phonetxt);
 					user_copy.put("credit", credit);
 					user_copy.put("invitation_code", invitortxt);
+					
+					ParseACL acl = new ParseACL();
+					acl.setPublicReadAccess(true);
+					acl.setPublicWriteAccess(true);
+					
+					user_copy.setACL(acl);
 					
 					user_copy.saveInBackground();
 					

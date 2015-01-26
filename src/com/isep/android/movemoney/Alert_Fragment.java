@@ -125,79 +125,91 @@ public class Alert_Fragment extends Fragment {
 	                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
 	
 								public void done(ParseObject processData,ParseException ee) {
+									
 									if(ee == null){
 										
-										//ParseUser user = ParseUser.getCurrentUser();
-										double credit_transfer = processData.getDouble("process_credit");
-										double credit_old = user.getDouble("credit");
+										final double credit_transfer = processData.getDouble("process_credit");
+										//double credit_old = user.getDouble("credit");
 										String money_situation = processData.getString("money_situation");
+										
+										String phonenumber_current = user.getUsername();
 										
 										if(money_situation.equals("positive")) {
 											
-											double credit_new = credit_old + credit_transfer;
-											user.put("credit", credit_new);
+											//double credit_new = credit_old - credit_transfer;
+											//user.put("credit", credit_new);
+											ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
+											query.whereEqualTo("username", phonenumber_current);
+											query.findInBackground(new FindCallback<ParseObject>() {
+												
+												@Override
+												public void done(List<ParseObject> userList, ParseException e) {
+													// TODO Auto-generated method stub
+													if(e == null) {
+														
+														ParseObject userData = userList.get(0);
+														double credit = userData.getDouble("credit");
+														double credit_new = credit - credit_transfer;
+														userData.put("credit", credit_new);
+														userData.saveInBackground();
+														
+													} else {
+														
+														// to do the code here
+														
+													}
+												}
+												
+											});
 											
 										} else {
 											
-											double credit_new = credit_old - credit_transfer;
-											user.put("credit", credit_new);
+											//double credit_new = credit_old + credit_transfer;
+											//user.put("credit", credit_new);
+											ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
+											query.whereEqualTo("username", phonenumber_current);
+											query.findInBackground(new FindCallback<ParseObject>() {
+												
+												@Override
+												public void done(List<ParseObject> userList, ParseException e) {
+													// TODO Auto-generated method stub
+													if(e == null) {
+														
+														ParseObject userData = userList.get(0);
+														double credit = userData.getDouble("credit");
+														double credit_new = credit + credit_transfer;
+														userData.put("credit", credit_new);
+														userData.saveInBackground();
+														
+													} else {
+														
+														// to do the code here
+														
+													}
+												}
+												
+											});
 											
 										}
 										
-										user.saveInBackground();
+										//user.saveInBackground();
 										
 										processData.put("process_situation", "finish");
 										processData.saveInBackground();
-									
-									}
-									
-								}
-								
-								
-	                    	});
-	               
-	                    	/*
-	                    	TextView process_starter = (TextView) view.findViewById(R.id.alertlist_phonenumber);
-	                    	String process_startertxt = process_starter.getText().toString();
-	                    	
-	                    	TextView process_credit = (TextView) view.findViewById(R.id.alertlist_credit);
-	                    	String process_credittxt = process_credit.getText().toString();
-	                    	final double process_credit_double = Double.parseDouble(process_credittxt);
-	                    	
-	                    	TextView money_situation = (TextView) view.findViewById(R.id.alertlist_money_situation);
-	                    	final String money_situationtxt = money_situation.getText().toString();
-	                    	
-	                    	ParseQuery<ParseUser> query2 = ParseUser.getQuery();
-	                    	query2.whereEqualTo("username", process_startertxt);
-	                    	query2.findInBackground(new FindCallback<ParseUser>() {
-
-								@Override
-								public void done(List<ParseUser> userList, ParseException eee) {
-									// TODO Auto-generated method stub
-									ParseObject userData = userList.get(0);
-									double credit_old = userData.getDouble("credit");
-									
-									if(money_situationtxt.equals("positive")){
-										
-										double credit_new = credit_old - process_credit_double;
-										userData.put("credit", credit_new);
-										userData.saveInBackground();
 										
 									} else {
 										
-										double credit_new = credit_old + process_credit_double;
-										userData.put("credit", credit_new);
-										userData.saveInBackground();
+										// To do the code here
 										
 									}
 									
-									
 								}
-	                    		
-	                    		
-	                    		
+								
+								
 	                    	});
-	                    	*/
+	                    	
+	                    	//this is where to add the code
+	                    	
 	                    	
 	                    }
 	                    
