@@ -94,6 +94,25 @@ public class Alert_Fragment extends Fragment {
 							public void done(ParseObject processData,ParseException ee) {
 								if(ee == null){
 									
+									ParseUser user = ParseUser.getCurrentUser();
+									double credit_transfer = processData.getDouble("process_credit");
+									double credit_old = user.getDouble("credit");
+									String money_situation = processData.getString("money_situation");
+									
+									if(money_situation.equals("positive")) {
+										
+										double credit_new = credit_old + credit_transfer;
+										user.put("credit", credit_new);
+										
+									} else {
+										
+										double credit_new = credit_old - credit_transfer;
+										user.put("credit", credit_new);
+										
+									}
+									
+									user.saveInBackground();
+									
 									processData.put("process_situation", "finish");
 									processData.saveInBackground();
 								
