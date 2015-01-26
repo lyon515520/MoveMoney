@@ -30,7 +30,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressLint("SimpleDateFormat") 
 public class Alert_Fragment extends Fragment {
@@ -85,10 +84,11 @@ public class Alert_Fragment extends Fragment {
                 	
                     public void onClick(DialogInterface dialog, int which) { 
                     	
-                    	TextView id_process = (TextView) rootview.findViewById(R.id.alertlist_id_process);
+                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
                     	String id_processtxt = id_process.getText().toString();
                     	
                     	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+                    	
                     	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
 
 							public void done(ParseObject processData,ParseException ee) {
@@ -110,7 +110,7 @@ public class Alert_Fragment extends Fragment {
                 .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) { 
                     	
-                    	TextView id_process = (TextView) rootview.findViewById(R.id.alertlist_id_process);
+                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
                     	String id_processtxt = id_process.getText().toString();
                     	
                     	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
@@ -206,21 +206,4 @@ public class Alert_Fragment extends Fragment {
      return items;
 	    }
 	 
-	 public void alertWindow(View view) {
-		 new AlertDialog.Builder(getActivity())
-         .setTitle("Detail of Alert")
-         .setMessage("This message should change according to the alert:")
-         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-             public void onClick(DialogInterface dialog, int which) { 
-                 // continue with delete
-             }
-          })
-         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-             public void onClick(DialogInterface dialog, int which) { 
-                 // do nothing
-             }
-          })
-         .setIcon(android.R.drawable.ic_dialog_info)
-          .show();    
-	    }
 }
