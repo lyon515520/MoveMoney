@@ -11,6 +11,24 @@
         android:layout_height="wrap_content"
         android:layout_weight="2">
         
+        <!-- this is the invisible Id of process -->
+
+        <TextView
+            android:id="@+id/alertlist_id_process"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/alertlist_phonenumber_starter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="0sp"
+            android:visibility="invisible" />
+        
 	    <TextView
 	        android:id="@+id/alertlist_username"
 	        android:layout_width="wrap_content"
@@ -21,17 +39,7 @@
 	        android:layout_weight="0.5"
 	        android:text="PierreLI"
 	        android:textSize="20sp" />
-	    <TextView
-	        android:id="@+id/alertlist_id_process"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dip"
-	        android:layout_marginRight="5dip"
-	        android:layout_marginTop="5dip"
-	        android:layout_weight="0.5"
-	        android:textSize="20sp"
-	        android:visibility="invisible"/>
-
+	    
 	    <TextView
 	        android:id="@+id/alertlist_credit"
 	        android:layout_width="wrap_content"

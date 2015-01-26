@@ -48,8 +48,29 @@ public class Alert_Fragment extends Fragment {
 	    ArrayList<HashMap<String, Object>> items = getItems();
 	       
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), items, R.layout.alert_single, 
-                new String[] {"alertlist_username","alertlist_credit","alertlist_phonenumber","alertlist_date","alertlist_id_process"}, 
-                new int[] {R.id.alertlist_username, R.id.alertlist_credit, R.id.alertlist_phonenumber, R.id.alertlist_date, R.id.alertlist_id_process});
+                new String[] {  
+        			
+        			"alertlist_username",
+        			"alertlist_credit",
+        			"alertlist_phonenumber",
+        			"alertlist_date",
+        			"alertlist_id_process",
+        			"alertlist_phonenumber_starter",
+        		
+        		}, 
+                
+                new int[] {
+        			
+        			R.id.alertlist_username,
+        			R.id.alertlist_credit, 
+        			R.id.alertlist_phonenumber, 
+        			R.id.alertlist_date, 
+        			R.id.alertlist_id_process, 
+        			R.id.alertlist_phonenumber_starter,
+        		
+        		}
+        
+        );
 	    
         //adapter.notifyDataSetChanged();
         
@@ -62,14 +83,114 @@ public class Alert_Fragment extends Fragment {
         	
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id)
             {  
-              
+            	TextView process_starter = (TextView) view.findViewById(R.id.alertlist_phonenumber_starter);
+            	String process_startertxt = process_starter.getText().toString();
+            	
+            	final ParseUser user = ParseUser.getCurrentUser();
+            	
+            	String phonenumber = user.getUsername();
+            	
+            	if(process_startertxt.equals(phonenumber)) {
+            	
+	            	new AlertDialog.Builder(getActivity())
+	                .setTitle("Request")
+	                .setMessage(
+	        		"Amount:  "+
+	                ((TextView)view.findViewById(R.id.alertlist_credit)).getText()+"\u20ac"+
+	                '\n'+
+	                "Demander:  "+
+	                ((TextView)view.findViewById(R.id.alertlist_username)).getText()+
+	                '\n'+
+	                "Mobile:  "+
+	                ((TextView)view.findViewById(R.id.alertlist_phonenumber)).getText()+
+	                '\n'+
+	                "Date:  "+
+	                ((TextView)view.findViewById(R.id.alertlist_date)).getText()
+	                +'\n'
+	                
+	                )
+	                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+	                	
+	                    public void onClick(DialogInterface dialog, int which) { 
+	                    	
+	                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
+	                    	String id_processtxt = id_process.getText().toString();
+	                    	
+	                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+	                    	
+	                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
+	
+								public void done(ParseObject processData,ParseException ee) {
+									if(ee == null){
+										
+										//ParseUser user = ParseUser.getCurrentUser();
+										double credit_transfer = processData.getDouble("process_credit");
+										double credit_old = user.getDouble("credit");
+										String money_situation = processData.getString("money_situation");
+										
+										if(money_situation.equals("positive")) {
+											
+											double credit_new = credit_old + credit_transfer;
+											user.put("credit", credit_new);
+											
+										} else {
+											
+											double credit_new = credit_old - credit_transfer;
+											user.put("credit", credit_new);
+											
+										}
+										
+										user.saveInBackground();
+										
+										processData.put("process_situation", "finish");
+										processData.saveInBackground();
+									
+									}
+									
+								}
+								
+								
+	                    	});
+	                    	
+	                    }
+	                    
+	                 })
+	                .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
+	                    public void onClick(DialogInterface dialog, int which) { 
+	                    	
+	                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
+	                    	String id_processtxt = id_process.getText().toString();
+	                    	
+	                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+	                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
+	
+								public void done(ParseObject processData,ParseException ee) {
+									if(ee == null){
+										
+										processData.deleteInBackground();
+										processData.saveInBackground();
+									
+									}
+									
+								}
+								
+								
+	                    	});
+	                    	
+	                    }
+	                 })
+	                .setIcon(android.R.drawable.ic_dialog_info)
+	                 .show();
+            	 
+            } else {
+            	
             	new AlertDialog.Builder(getActivity())
                 .setTitle("Request")
                 .setMessage(
         		"Amount:  "+
                 ((TextView)view.findViewById(R.id.alertlist_credit)).getText()+"\u20ac"+
                 '\n'+
-                "Demander:  "+
+                "Receiver:  "+
                 ((TextView)view.findViewById(R.id.alertlist_username)).getText()+
                 '\n'+
                 "Mobile:  "+
@@ -80,53 +201,7 @@ public class Alert_Fragment extends Fragment {
                 +'\n'
                 
                 )
-                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                	
-                    public void onClick(DialogInterface dialog, int which) { 
-                    	
-                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
-                    	String id_processtxt = id_process.getText().toString();
-                    	
-                    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-                    	
-                    	query.getInBackground(id_processtxt, new GetCallback<ParseObject>() {
-
-							public void done(ParseObject processData,ParseException ee) {
-								if(ee == null){
-									
-									ParseUser user = ParseUser.getCurrentUser();
-									double credit_transfer = processData.getDouble("process_credit");
-									double credit_old = user.getDouble("credit");
-									String money_situation = processData.getString("money_situation");
-									
-									if(money_situation.equals("positive")) {
-										
-										double credit_new = credit_old + credit_transfer;
-										user.put("credit", credit_new);
-										
-									} else {
-										
-										double credit_new = credit_old - credit_transfer;
-										user.put("credit", credit_new);
-										
-									}
-									
-									user.saveInBackground();
-									
-									processData.put("process_situation", "finish");
-									processData.saveInBackground();
-								
-								}
-								
-							}
-							
-							
-                    	});
-                    	
-                    }
-                    
-                 })
-                .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) { 
                     	
                     	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
@@ -152,6 +227,9 @@ public class Alert_Fragment extends Fragment {
                  })
                 .setIcon(android.R.drawable.ic_dialog_info)
                  .show();
+            	
+            }
+            	
             }
 
          });
@@ -164,14 +242,17 @@ public class Alert_Fragment extends Fragment {
          
      	String currentUsername;
      	currentUsername = ParseUser.getCurrentUser().getString("username");
-         ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
-	        query.whereEqualTo("phonenumber2",currentUsername);
+     	
+     	
+     	
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Process");
+	        //query.whereEqualTo("phonenumber2",currentUsername);
 	        query.whereEqualTo("process_situation", "unfinish");
 	        query.addDescendingOrder("updatedAt");
 	        
 	        query.findInBackground(new FindCallback<ParseObject>() {
 
-	            @Override
+	            @Override 
 	            public void done(List<ParseObject> objects, ParseException e) {
 	                if (e == null) {
 	                	
@@ -193,6 +274,11 @@ public class Alert_Fragment extends Fragment {
 	                		
 	                		String id_process=test.getObjectId();
 	                		
+	                		String name_starter = test.getString("user2");
+	                		String phonenumber_starter = test.getString("phonenumber2");//-------------------------------------
+	                		
+	                		//String process_type = test.getString("type");
+	                		
 	                		if(money_situation.equals("positive")){
 	                			
 	                			money_situation_symbol = "+";
@@ -205,13 +291,29 @@ public class Alert_Fragment extends Fragment {
 	                		
 	                		String credit_String = String.valueOf(credit);
 	                		
+	                		ParseUser user = ParseUser.getCurrentUser();
 	                		
-	                		map.put("alertlist_username", name);
-	                		map.put("alertlist_credit", money_situation_symbol+credit_String);
-	                        map.put("alertlist_phonenumber", phonenumber);
-	                        map.put("alertlist_date", recharge_date_string);
-	                        map.put("alertlist_id_process", id_process);
-	                        items.add(map);
+	                		if(!phonenumber.equals(user.getUsername())) {
+	                		
+		                		map.put("alertlist_username", name);
+		                		map.put("alertlist_credit", money_situation_symbol+credit_String);
+		                        map.put("alertlist_phonenumber", phonenumber);
+		                        map.put("alertlist_date", recharge_date_string);
+		                        map.put("alertlist_id_process", id_process);
+		                        map.put("alertlist_phonenumber_starter", phonenumber_starter);//------------------------
+		                        items.add(map);
+	                		
+	                		} else {
+	                			
+	                			map.put("alertlist_username", name_starter);
+		                		map.put("alertlist_credit", money_situation_symbol+credit_String);
+		                        map.put("alertlist_phonenumber", phonenumber_starter);
+		                        map.put("alertlist_date", recharge_date_string);
+		                        map.put("alertlist_id_process", id_process);
+		                        map.put("alertlist_phonenumber_starter", phonenumber_starter);//------------------------
+		                        items.add(map);
+	                			
+	                		}
 	                	}
 	               
 	                } else {
