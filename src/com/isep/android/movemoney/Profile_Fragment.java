@@ -71,7 +71,7 @@ public class Profile_Fragment extends Fragment {
 						public void onClick(View v) {
 							
 							LayoutInflater factory=LayoutInflater.from(getActivity());
-							final View view = factory.inflate(R.layout.modify_alertdialog_username,null);
+							final View view = factory.inflate(R.layout.alertdialog_username_mod,null);
 							
 							new AlertDialog.Builder(getActivity())
 								.setTitle("Info")
@@ -128,7 +128,8 @@ public class Profile_Fragment extends Fragment {
 									
 									
 								})
-								.setNegativeButton("No", null).show();
+								.setNegativeButton("No", null)
+								.show();
 							
 						}
 						
