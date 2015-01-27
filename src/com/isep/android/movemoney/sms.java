@@ -12,7 +12,7 @@ public class sms{
 		String message = "To " + receiver + ": ";
 		String sender = senderName + " (" + senderNo + ")";
 		
-		if((type=="send_success")||(type=="demande_success"))
+		if((type=="send_success")||(type=="demande_success")||(type=="invite"))
 			message = message+ "You have received a request from: " + sender+", please check your MoveMoney";
 		else if((type=="send_fail")||(type=="demande_fail"))
 			message = message+ "This is an invitation to MoveMoney from "+ sender +", please sign up with the invitation code: "+senderNo+", and get 50 euros";
@@ -22,6 +22,7 @@ public class sms{
 			message = message+ "Your request to "+sender+" has been refused, please check in your MoveMoney";
 		else if(type=="alert_cancel")
 			message = message+ "The request from "+sender+" has been canceled, please check in your MoveMoney";
+		
 		else{ 
 			message = "MoveMoney: Error";
 			receiver = senderNo;

@@ -191,7 +191,7 @@ public class MainActivity extends Activity
     }
     
     public void invite_user(MenuItem item){
-        Toast.makeText(this, "Hello World", Toast.LENGTH_LONG).show();
+   
         // to do the code here
         LayoutInflater factory=LayoutInflater.from(this);
 		final View view = factory.inflate(R.layout.alertdialog_invitation,null);
@@ -212,7 +212,9 @@ public class MainActivity extends Activity
 					EditText invitation_mobile = (EditText) view.findViewById(R.id.invitation_mobile);
 					String invitation_mobiletxt = invitation_mobile.getText().toString();
 					
-					//"invitation_mobiletxt" is the mobile of receiver, continue the SMS from here 
+					//"invitation_mobiletxt" is the mobile of receiver, continue the SMS from here
+					sms message = new sms();
+					message.sendSMS("invite", invitation_mobiletxt, phonenumber_current, username_current);
 					
 				}
 				
