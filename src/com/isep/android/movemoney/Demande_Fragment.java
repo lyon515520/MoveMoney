@@ -250,9 +250,9 @@ public class Demande_Fragment extends Fragment {
 								
 									final ParseObject process = new ParseObject("Process");
 									
-									process.put("money_situation", "negative");
+									process.put("money_situation", "positive");
 									process.put("process_situation", "unfinish");
-									process.put("type", "send");
+									process.put("type", "demande");
 									process.put("process_credit", demande_amounttxt);
 									
 									
