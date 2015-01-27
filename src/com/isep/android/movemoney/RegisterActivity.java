@@ -137,7 +137,9 @@ public class RegisterActivity extends Activity {
 							@Override
 							 public void done(ParseObject userData, ParseException e) {
 								// TODO Auto-generated method stub
-								if(userData != null) {
+								/*
+								 	if(userData != null) {
+								 
 									
 									double credit = userData.getDouble("credit");
 									double credit_new = credit + 50;
@@ -152,6 +154,37 @@ public class RegisterActivity extends Activity {
 									user_copy.saveInBackground();
 									
 								} else {
+									
+									Log.d("App", "Error: " + e.getMessage());
+									Toast.makeText(getApplicationContext(),
+											"There is no such an invitor!!!",
+											Toast.LENGTH_LONG).show();
+									
+								}
+								*/
+								if(userData != null){
+								 
+									
+									double credit = userData.getDouble("credit");
+									double credit_new = credit + 50;
+									userData.put("credit", credit_new);
+									userData.saveInBackground();
+									
+									user_copy.put("invitation_code", invitortxt);
+									user_copy.put("credit", credit_defalt + 50);
+									user_copy.put("nickname", usernametxt);
+									user_copy.put("username", phonetxt);
+									user_copy.setACL(acl);
+									user_copy.saveInBackground();
+									
+								}  else {
+									
+									user_copy.put("invitation_code", "");
+									user_copy.put("credit", credit_defalt);
+									user_copy.put("nickname", usernametxt);
+									user_copy.put("username", phonetxt);
+									user_copy.setACL(acl);
+									user_copy.saveInBackground();
 									
 									Log.d("App", "Error: " + e.getMessage());
 									Toast.makeText(getApplicationContext(),
