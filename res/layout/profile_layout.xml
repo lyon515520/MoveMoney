@@ -2,128 +2,145 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginRight="10dp"
     android:gravity="center_horizontal" >
     
-     <LinearLayout
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_margin="10dp"
-         android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp" >
-
-            <TextView
-                android:id="@+id/profile_textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="Mobile:"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/profile_phonenumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="null"
-                android:textSize="15sp" />
-            
-            <Button
-                android:id="@+id/btn_invisible1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="modify"
-                android:textSize="15sp"
-                android:visibility="invisible" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp" >
-
-            <TextView
-                android:id="@+id/profile_textView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:text="Credit:"
-                android:padding="10dp"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/profile_credit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="null"
-                android:textSize="15sp" />
-            
-            <Button
-                android:id="@+id/btn_invisible2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="modify"
-                android:textSize="15sp"
-                android:visibility="invisible" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp" >
-
-            <TextView
-                android:id="@+id/profile_textView1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:text="Username:"
-                android:padding="10dp"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/profile_username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="null"
-                android:textSize="15sp" />
-            
-            <Button
-                android:id="@+id/btn_profile_username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:layout_weight="1.0"
-                android:padding="10dp"
-                android:text="modify"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+	    <ImageView 
+	        android:id="@+id/profile_image"
+		    android:layout_width="180dp"
+		    android:layout_height="180dp"
+		    android:background="@color/grey"
+		    android:padding="5dp"
+		    android:layout_marginTop="10dp"
+		    android:scaleType="fitCenter"
+		    android:layout_gravity="center_horizontal"
+		    android:src="@drawable/user" />
+	    
+	     <LinearLayout
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content"
+	         android:layout_margin="10dp"
+	         android:orientation="vertical" >
+	
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_marginBottom="15dp" >
+	
+	            <TextView
+	                android:id="@+id/profile_textView2"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="Mobile:"
+	                android:textSize="15sp"
+	                android:textStyle="bold" />
+	            
+	            <TextView
+	                android:id="@+id/profile_phonenumber"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="null"
+	                android:textSize="15sp" />
+	            
+	            <Button
+	                android:id="@+id/btn_invisible1"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="modify"
+	                android:textSize="15sp"
+	                android:visibility="invisible" />
+	
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_marginBottom="15dp" >
+	
+	            <TextView
+	                android:id="@+id/profile_textView3"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:text="Credit:"
+	                android:padding="10dp"
+	                android:textSize="15sp"
+	                android:textStyle="bold" />
+	            
+	            <TextView
+	                android:id="@+id/profile_credit"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="null"
+	                android:textSize="15sp" />
+	            
+	            <Button
+	                android:id="@+id/btn_invisible2"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="modify"
+	                android:textSize="15sp"
+	                android:visibility="invisible" />
+	
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_marginBottom="15dp" >
+	
+	            <TextView
+	                android:id="@+id/profile_textView1"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:text="Username:"
+	                android:padding="10dp"
+	                android:textSize="15sp"
+	                android:textStyle="bold" />
+	            
+	            <TextView
+	                android:id="@+id/profile_username"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="null"
+	                android:textSize="15sp" />
+	            
+	            <Button
+	                android:id="@+id/btn_profile_username"
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="3dp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginTop="3dp"
+	                android:layout_weight="1.0"
+	                android:padding="10dp"
+	                android:text="modify"
+	                android:textSize="15sp" />
+	
+	        </LinearLayout>
+	
+	    </LinearLayout>
+    
     </LinearLayout>
 
 </RelativeLayout>

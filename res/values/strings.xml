@@ -12,6 +12,7 @@
     <color name="white">#ffffff</color>
     <color name="grey">#808080</color>
     <color name="grey_clair">#B8B6B6</color>
+    <string name="invitation"/>
     
     
     

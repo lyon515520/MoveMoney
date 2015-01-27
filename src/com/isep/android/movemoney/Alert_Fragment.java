@@ -75,9 +75,12 @@ public class Alert_Fragment extends Fragment {
         //adapter.notifyDataSetChanged();
         
         //Adapter for ListView
+        
+        
 	    list.setAdapter(adapter);
 		
 		list.setItemsCanFocus(true);
+        
         
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
         	
@@ -245,10 +248,11 @@ public class Alert_Fragment extends Fragment {
 											
 										}
 										
-										//user.saveInBackground();
-										
 										processData.put("process_situation", "finish");
+										
 										processData.saveInBackground();
+										
+										
 										
 									} else {
 										

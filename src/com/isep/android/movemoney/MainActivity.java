@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity
@@ -46,6 +47,9 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        
+        // If your minSdkVersion is 11 or higher use:
+        getActionBar().setDisplayHomeAsUpEnabled(true);//--------------------------------
     }
 
     @Override
@@ -182,6 +186,11 @@ public class MainActivity extends Activity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+    }
+    
+    public void invite_user(MenuItem item){
+        Toast.makeText(this, "Hello World", Toast.LENGTH_LONG).show();
+        // to do the code here
     }
 
 }
