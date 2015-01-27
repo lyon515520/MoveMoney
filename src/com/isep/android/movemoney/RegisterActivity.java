@@ -1,5 +1,6 @@
 package com.isep.android.movemoney;
 
+import com.parse.GetCallback;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -10,6 +11,7 @@ import com.parse.SignUpCallback;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +34,7 @@ public class RegisterActivity extends Activity {
 	String confirmationpwdtxt;
 	String invitortxt;
 	
-	double credit = 50;
+	double credit_defalt;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,22 +122,56 @@ public class RegisterActivity extends Activity {
 					user.put("nickname", usernametxt);
 					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
-					//user.put("credit", credit);
-					user.put("invitation_code", invitortxt);
 					
-					ParseObject user_copy = new ParseObject("User_copy");
-					user_copy.put("nickname", usernametxt);
-					user_copy.put("username", phonetxt);
-					user_copy.put("credit", credit);
-					user_copy.put("invitation_code", invitortxt);
-					
-					ParseACL acl = new ParseACL();
+					final ParseObject user_copy = new ParseObject("User_copy");
+					final ParseACL acl = new ParseACL();
 					acl.setPublicReadAccess(true);
 					acl.setPublicWriteAccess(true);
 					
-					user_copy.setACL(acl);
+					if(!invitortxt.equals("")){
 					
-					user_copy.saveInBackground();
+						ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
+						query.whereEqualTo("username", invitortxt);
+						query.getFirstInBackground(new GetCallback<ParseObject>() {
+							
+							@Override
+							 public void done(ParseObject userData, ParseException e) {
+								// TODO Auto-generated method stub
+								if(userData != null) {
+									
+									double credit = userData.getDouble("credit");
+									double credit_new = credit + 50;
+									userData.put("credit", credit_new);
+									userData.saveInBackground();
+									user_copy.put("invitation_code", invitortxt);
+									user_copy.put("credit", credit_defalt + 50);
+									user_copy.put("nickname", usernametxt);
+									user_copy.put("username", phonetxt);
+									user_copy.setACL(acl);
+									user_copy.saveInBackground();
+									
+								} else {
+									
+									Log.d("App", "Error: " + e.getMessage());
+									Toast.makeText(getApplicationContext(),
+											"There is no such an invitor!!!",
+											Toast.LENGTH_LONG).show();
+									
+								}
+							}
+							
+						});
+					
+					} else {
+						
+						user_copy.put("invitation_code", "");
+						user_copy.put("credit", credit_defalt);
+						user_copy.put("nickname", usernametxt);
+						user_copy.put("username", phonetxt);
+						user_copy.setACL(acl);
+						user_copy.saveInBackground();
+						
+					}
 					
 					
 					user.signUpInBackground(new SignUpCallback() {
