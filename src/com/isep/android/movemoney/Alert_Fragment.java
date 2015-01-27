@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Alert_Fragment extends Fragment {
 	View rootview;
@@ -75,12 +76,9 @@ public class Alert_Fragment extends Fragment {
         //adapter.notifyDataSetChanged();
         
         //Adapter for ListView
-        
-        
 	    list.setAdapter(adapter);
 		
 		list.setItemsCanFocus(true);
-        
         
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {  
         	
@@ -92,9 +90,10 @@ public class Alert_Fragment extends Fragment {
             	String phonenumber = phonenumberView.getText().toString();//phonenumber on the Screen 
             	
             	final ParseUser user = ParseUser.getCurrentUser();
+            	final String nickName_current = user.getString("nickname");
             	
-            	String phonenumber_current = user.getUsername();//phonenumber of current user 
-            	
+            	final String phonenumber_current = user.getUsername();//phonenumber of current user 
+            	//final String phonenumber_actor = new String();
             	TextView indexView = (TextView) view.findViewById(R.id.alertlist_index);
             	String index = indexView.getText().toString();//the index, "1" represent Currentuser is User1, "2" represent Currentuser is User2
             	
@@ -248,11 +247,17 @@ public class Alert_Fragment extends Fragment {
 											
 										}
 										
-										processData.put("process_situation", "finish");
+										//user.saveInBackground();
 										
+										processData.put("process_situation", "finish");
 										processData.saveInBackground();
 										
-										
+										sms message = new sms();
+										//message.sendSMS("send_success", send_numbertxt,send_senderNo,send_senderName);
+										message.sendSMS("alert_accept", phonenumber_actor,phonenumber_current,nickName_current);
+										Toast.makeText(getActivity().getApplicationContext(),
+												"You have accpeted the request", Toast.LENGTH_LONG)
+												.show();
 										
 									} else {
 										
@@ -279,8 +284,17 @@ public class Alert_Fragment extends Fragment {
 								public void done(ParseObject processData,ParseException ee) {
 									if(ee == null){
 										
+										String phonenumber_actor = processData.getString("phonenumber1");
+										
 										processData.deleteInBackground();
 										processData.saveInBackground();
+										
+										sms message = new sms();
+										//message.sendSMS("send_success", send_numbertxt,send_senderNo,send_senderName);
+										message.sendSMS("alert_refuse", phonenumber_actor,phonenumber_current,nickName_current);
+										Toast.makeText(getActivity().getApplicationContext(),
+												"Your have refused the request", Toast.LENGTH_LONG)
+												.show();
 									
 									}
 									
@@ -327,9 +341,16 @@ public class Alert_Fragment extends Fragment {
 							public void done(ParseObject processData,ParseException ee) {
 								if(ee == null){
 									
+									String phonenumber_actor = processData.getString("phonenumber2");
 									processData.deleteInBackground();
 									processData.saveInBackground();
-								
+									
+									sms message = new sms();
+									//message.sendSMS("send_success", send_numbertxt,send_senderNo,send_senderName);
+									message.sendSMS("alert_cancel", phonenumber_actor,phonenumber_current,nickName_current);
+									Toast.makeText(getActivity().getApplicationContext(),
+											"Your request has been canceled", Toast.LENGTH_LONG)
+											.show();
 								}
 								
 							}

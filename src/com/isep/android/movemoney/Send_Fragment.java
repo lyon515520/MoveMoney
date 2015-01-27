@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,8 @@ public class Send_Fragment extends Fragment {
 	EditText send_number;
 	EditText send_amount;
 	
+	String send_senderNo;
+	String send_senderName;
 	String send_numbertxt;
 	double send_amounttxt;
 	
@@ -133,6 +136,7 @@ public class Send_Fragment extends Fragment {
 		    			        if(number_list.size()==0) 
 		    			        	{
 		    			        	send_number.setText("");
+		    			        	
 		    			        	Toast.makeText(getActivity().getApplicationContext(),
 		    			        		"No phone Number!", Toast.LENGTH_LONG)
 										.show();
@@ -219,84 +223,144 @@ public class Send_Fragment extends Fragment {
 			public void onClick(View arg0) {
 				
 				send_numbertxt = send_number.getText().toString();
-				send_amounttxt = Double.parseDouble(send_amount.getText().toString());
-				
-				if(send_amounttxt > 0) {
-					
-					final ParseObject process = new ParseObject("Process");
-					
-					process.put("money_situation", "negative");
-					process.put("process_situation", "unfinish");
-					process.put("type", "send");
-					process.put("process_credit", send_amounttxt);
-					
-					
-					ParseUser user = ParseUser.getCurrentUser();
-					 
-					process.put("user1", user.getString("nickname"));
-					process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Sender in Parse
-					//process.put("parent", user);                           
-					
-					ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
-					query.whereEqualTo("username", send_numbertxt);
-					query.findInBackground(new FindCallback<ParseObject>() {
-						
-						@Override
-						public void done(List<ParseObject> userList,ParseException e) {
-							// TODO Auto-generated method stub
-							if(e == null) {
+
+												
+				if((send_numbertxt.startsWith("06")
+						||send_numbertxt.startsWith("07"))
+						&&(send_numbertxt.length()==10))
+						{
+							String amount = send_amount.getText().toString();
+							if(amount.startsWith("0")
+									||amount.startsWith("1")
+									||amount.startsWith("2")
+									||amount.startsWith("3")
+									||amount.startsWith("4")
+									||amount.startsWith("5")
+									||amount.startsWith("6")
+									||amount.startsWith("7")
+									||amount.startsWith("8")
+									||amount.startsWith("9")
+									||amount.startsWith("."))
 								
-								try {
+									{
+								
+									send_amounttxt = Double.parseDouble(send_amount.getText().toString());
+
+									if(send_amounttxt>0){
+								
+									final ParseObject process = new ParseObject("Process");
 									
-									ParseObject userData = userList.get(0);
-									//process.put("parent2", userData.getObjectId());
-									process.put("user2", userData.getString("nickname"));
-									process.put("phonenumber2", send_numbertxt);
-									//process.put("user2", "test");
+									process.put("money_situation", "negative");
+									process.put("process_situation", "unfinish");
+									process.put("type", "send");
+									process.put("process_credit", send_amounttxt);
 									
-									ParseACL acl = new ParseACL();
-									acl.setPublicReadAccess(true);
-									acl.setPublicWriteAccess(true);
 									
-									process.setACL(acl);
+									ParseUser user = ParseUser.getCurrentUser();
+									//
+									send_senderNo = user.getString("username");
+									send_senderName = user.getString("nickname");
+									 
+									process.put("user1", user.getString("nickname"));
+									process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Sender in Parse
+									process.put("parent", user);                           
 									
-									process.saveInBackground();
-									
-								} catch(IndexOutOfBoundsException r) {
-									
+									ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
+									query.whereEqualTo("username", send_numbertxt);
+									query.findInBackground(new FindCallback<ParseObject>() {
+										
+										@Override
+										public void done(List<ParseObject> userList,ParseException e) {
+											// TODO Auto-generated method stub
+											if(e == null) {
+												
+												try {
+													
+													ParseObject userData = userList.get(0);
+													//process.put("parent2", userData.getObjectId());
+													process.put("user2", userData.getString("nickname"));
+													process.put("phonenumber2", send_numbertxt);
+													//process.put("user2", "test");
+													
+													ParseACL acl = new ParseACL();
+													acl.setPublicReadAccess(true);
+													acl.setPublicWriteAccess(true);
+													
+													process.setACL(acl);
+													
+													process.saveInBackground();
+													
+													sms message = new sms();
+													message.sendSMS("send_success", send_numbertxt,send_senderNo,send_senderName);
+													Toast.makeText(getActivity().getApplicationContext(),
+															"Your request has been sent", Toast.LENGTH_LONG)
+															.show();
+													
+												} catch(IndexOutOfBoundsException r) {
+													AlertDialog.Builder builder_confirm = new Builder(getActivity());
+													builder_confirm.setTitle("Comfirmation");
+													builder_confirm.setIcon(android.R.drawable.ic_dialog_info)
+						    				    			.setMessage("Your request doesn't succeed. Because the receiver doesn't have an account.\nInvite him/her?")
+						    				    			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+																@Override
+																public void onClick(
+																		DialogInterface dialog,
+																		int which) {
+																	// TODO Auto-generated method stub
+																	sms message = new sms();
+																	message.sendSMS("send_fail", send_numbertxt,send_senderNo,send_senderName);
+																	Toast.makeText(getActivity().getApplicationContext(),
+																			"An invitation SMS has been sent", Toast.LENGTH_LONG)
+																			.show();	
+																}})
+						    				    			.setNegativeButton("Cancel", null)
+						    				    			.show();
+												
+												}
+												
+											} else {
+												
+												Log.d("App", "Error: " + e.getMessage());
+												
+											}
+										}
+									});
+									/*
 									Toast.makeText(getActivity().getApplicationContext(),
-											"Enter a correct mobile number!", Toast.LENGTH_LONG)
+											"Transfere successfully", Toast.LENGTH_LONG)
 											.show();
 									
+								*/
+								//erase the EditText
+								send_number.setText("");
+								send_amount.setText("");
+								
+								//end of if
 								}
-								
-							} else {
-								
-								Log.d("App", "Error: " + e.getMessage());
-								
-							}
+									else{
+										Toast.makeText(getActivity().getApplicationContext(),
+												"Please enter a right amount", Toast.LENGTH_LONG)
+												.show();
+									}
+									}
+							
+								else{
+									Toast.makeText(getActivity().getApplicationContext(),
+											"Please enter an amount", Toast.LENGTH_LONG)
+											.show();
+									}
 						}
-					});
-					
+				
+				else{
+
 					Toast.makeText(getActivity().getApplicationContext(),
-							"Transfere successfully", Toast.LENGTH_LONG)
-							.show();
-					
-				} else {
-					
-					Toast.makeText(getActivity().getApplicationContext(),
-							"Please enter a correct number", Toast.LENGTH_LONG)
+							"Please enter a French mobile number", Toast.LENGTH_LONG)
 							.show();
 					
 				}
 				
-				//erase the EditText
-				send_number.setText("");
-				send_amount.setText("");
-				
-				
 			}
-			
 			
 			
 		});
