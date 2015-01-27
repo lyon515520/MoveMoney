@@ -106,6 +106,8 @@ public class Recharge_Fragment extends Fragment {
 					
 				}
 				
+				recharge.setText("");
+				
 				
 			}
 			

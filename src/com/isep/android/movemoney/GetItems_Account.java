@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -79,7 +82,7 @@ public class GetItems_Account {
 	                        map.put("accountlist_index", "1");
 	                        items.add(map);
 	                        
-                		} else {
+                		} else if(currentUsername.equals(phonenumber2)) {
                 			
                 			if(!money_situation.equals("negative")){
                     			

@@ -260,9 +260,6 @@ public class Alert_Fragment extends Fragment {
 								
 	                    	});
 	                    	
-	                    	//this is where to add the code
-	                    	
-	                    	
 	                    }
 	                    
 	                 })

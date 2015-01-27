@@ -81,7 +81,7 @@ public class GetItems_Alert {
 	                        map.put("alertlist_index", "1");
 	                        items.add(map);
 	                        
-                		} else {
+                		} else if(currentUsername.equals(phonenumber2)) {
                 			
                 			if(!money_situation.equals("negative")){
                     			

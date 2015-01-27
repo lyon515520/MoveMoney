@@ -120,6 +120,8 @@ public class Demande_Fragment extends Fragment {
 					
 				}
 				
+				demande_number.setText("");
+				demande_amount.setText("");
 				
 			}
 			
