@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:textSize="0sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textColor="@color/white" />
         
         <TextView
             android:id="@+id/accountlist_money_situation"
@@ -25,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:textSize="0sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textColor="@color/white" />
         
         <TextView
             android:id="@+id/accountlist_index"
@@ -33,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:textSize="0sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textColor="@color/white" />
         
 	    <TextView
 	        android:id="@+id/accountlist_username"
@@ -44,7 +47,8 @@
 	        android:layout_marginTop="5dip"
 	        android:layout_weight="1"
 	        android:text="PierreLI"
-	        android:textSize="20sp" />
+	        android:textSize="20sp"
+	        android:textColor="@color/white" />
 
 	    <TextView
 	        android:id="@+id/accountlist_credit"
@@ -56,7 +60,8 @@
 	        android:layout_weight="1"
 	        android:gravity="right"
 	        android:text="100 euros"
-	        android:textSize="20sp" />
+	        android:textSize="20sp"
+	        android:textColor="@color/white" />
     
     </LinearLayout>
 	
@@ -73,7 +78,8 @@
             android:layout_margin="5dip"
             android:text="0667597075"
             android:textSize="15sp" 
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/white" />
         
         <TextView
             android:id="@+id/accountlist_date"
@@ -83,13 +89,14 @@
             android:gravity="right"
             android:text="Jan 24, 2015"
             android:textSize="15sp" 
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/white" />
      
     </LinearLayout>
      
     <View 
         android:layout_width="wrap_content"
         android:layout_height="2dip"
-        android:background="@color/grey"/>
+        android:background="@color/white"/>
     
 </LinearLayout>

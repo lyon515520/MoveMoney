@@ -79,6 +79,7 @@ public class GetItems_Alert {
 	                        //map.put("alertlist_money_situation", money_situation);
 	                        map.put("alertlist_credit_absolute", credit_String);
 	                        map.put("alertlist_index", "1");
+	                        map.put("alertlist_symbol", "A");
 	                        items.add(map);
 	                        
                 		} else if(currentUsername.equals(phonenumber2)) {
@@ -102,6 +103,7 @@ public class GetItems_Alert {
                             //map.put("alertlist_money_situation", money_situation);
                             map.put("alertlist_credit_absolute", credit_String);
                             map.put("alertlist_index", "2");
+                            map.put("alertlist_symbol", "B");
                             items.add(map);
                 			
                 		} 

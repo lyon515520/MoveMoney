@@ -258,12 +258,12 @@ public class Send_Fragment extends Fragment {
 									
 									ParseUser user = ParseUser.getCurrentUser();
 									//
-									send_senderNo = user.getString("username");
+									send_senderNo = user.getUsername();
 									send_senderName = user.getString("nickname");
 									 
 									process.put("user1", user.getString("nickname"));
-									process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Sender in Parse
-									process.put("parent", user);                           
+									process.put("phonenumber1", send_senderNo);  //this part is to store the data of Sender in Parse
+									//process.put("parent", user);                           
 									
 									ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
 									query.whereEqualTo("username", send_numbertxt);

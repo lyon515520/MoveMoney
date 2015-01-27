@@ -1,113 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent">
-    
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2">
-        
-        <!-- this is the invisible Id of process -->
-
-        <TextView
-            android:id="@+id/alertlist_id_process"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="0sp"
-            android:visibility="invisible" />
-        
-        <TextView
-            android:id="@+id/alertlist_phonenumber_receiver"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="0sp"
-            android:visibility="invisible" />
-        
-        <TextView
-            android:id="@+id/alertlist_money_situation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="0sp"
-            android:visibility="invisible" />
-        
-        <TextView
-            android:id="@+id/alertlist_index"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="0sp"
-            android:visibility="invisible" />
-        
-        <TextView
-            android:id="@+id/alertlist_credit_absolute"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="0sp"
-            android:visibility="invisible" />
-        
-	    <TextView
-	        android:id="@+id/alertlist_username"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dip"
-	        android:layout_marginRight="5dip"
-	        android:layout_marginTop="5dip"
-	        android:layout_weight="0.5"
-	        android:text="PierreLI"
-	        android:textSize="20sp" />
-	    
-	    <TextView
-	        android:id="@+id/alertlist_credit"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dip"
-	        android:layout_marginRight="5dip"
-	        android:layout_marginTop="5dip"
-	        android:layout_weight="1"
-	        android:gravity="right"
-	        android:text="100 euros"
-	        android:textSize="20sp" />
-    
-    </LinearLayout>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" >
 	
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2">
-        
-        <TextView
-            android:id="@+id/alertlist_phonenumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:text="0667597075"
-            android:textSize="15sp" 
-            android:layout_weight="1"/>
-        
-        <TextView
-            android:id="@+id/alertlist_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:gravity="right"
-            android:text="Jan 24, 2015"
-            android:textSize="15sp" 
-            android:layout_weight="1"/>
-     
-    </LinearLayout>
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="2dip"
-        android:background="@color/grey" />
-
+	<TextView
+	    android:id="@+id/alertlist_symbol"
+	    android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+	    android:gravity="center"
+	    android:paddingLeft="5px"
+	    android:paddingRight="5px"
+	    android:textSize="25sp"
+	    android:textStyle="bold"
+	    android:textColor="@color/orange" 
+	    />
+	<LinearLayout
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="match_parent">
+	    
+	    <LinearLayout 
+	        android:orientation="horizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2">
+	        
+	        <!-- this is the invisible Id of process -->
+	
+	        <TextView
+	            android:id="@+id/alertlist_id_process"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0"
+	            android:textSize="0sp"
+	            android:visibility="invisible"
+	            android:textColor="@color/white"  />
+	        
+	        <TextView
+	            android:id="@+id/alertlist_phonenumber_receiver"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0"
+	            android:textSize="0sp"
+	            android:visibility="invisible"
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/alertlist_money_situation"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0"
+	            android:textSize="0sp"
+	            android:visibility="invisible"
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/alertlist_index"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0"
+	            android:textSize="0sp"
+	            android:visibility="invisible"
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/alertlist_credit_absolute"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0"
+	            android:textSize="0sp"
+	            android:visibility="invisible"
+	            android:textColor="@color/white" />
+	        
+		    <TextView
+		        android:id="@+id/alertlist_username"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="5dip"
+		        android:layout_marginRight="5dip"
+		        android:layout_marginTop="5dip"
+		        android:layout_weight="0.5"
+		        android:text="PierreLI"
+		        android:textSize="20sp"
+		        android:textColor="@color/white" />
+		    
+		    <TextView
+		        android:id="@+id/alertlist_credit"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="5dip"
+		        android:layout_marginRight="5dip"
+		        android:layout_marginTop="5dip"
+		        android:layout_weight="1"
+		        android:gravity="right"
+		        android:text="100 euros"
+		        android:textSize="20sp"
+		        android:textColor="@color/white" />
+	    
+	    </LinearLayout>
+		
+	    <LinearLayout 
+	        android:orientation="horizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2">
+	        
+	        <TextView
+	            android:id="@+id/alertlist_phonenumber"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="5dip"
+	            android:text="0667597075"
+	            android:textSize="15sp" 
+	            android:layout_weight="1"
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/alertlist_date"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="5dip"
+	            android:gravity="right"
+	            android:text="Jan 24, 2015"
+	            android:textSize="15sp" 
+	            android:layout_weight="1"
+	            android:textColor="@color/white" />
+	     
+	    </LinearLayout>
+	
+	    <View
+	        android:layout_width="wrap_content"
+	        android:layout_height="2dip"
+	        android:background="@color/white"
+	        android:textColor="@color/white" />
+	
+	</LinearLayout>
 </LinearLayout>

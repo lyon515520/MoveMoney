@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/blue"
+            android:background="@color/orange"
             android:orientation="horizontal"
             android:gravity="right" >
             
@@ -37,7 +37,8 @@
     
 	    <ListView android:layout_width="wrap_content"   
 	              android:layout_height="wrap_content"
-	              android:id="@+id/ListView_account"  >
+	              android:id="@+id/ListView_account"
+	              android:background="@layout/body_gradient"  >
 	        
 	    </ListView>
     

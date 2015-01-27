@@ -119,7 +119,7 @@ public class RegisterActivity extends Activity {
 				}else {
 					
 					ParseUser user = new ParseUser();
-					//user.put("nickname", usernametxt);
+					user.put("nickname", usernametxt);
 					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
 					
@@ -154,6 +154,13 @@ public class RegisterActivity extends Activity {
 									user_copy.saveInBackground();
 									
 								} else {
+									
+									user_copy.put("invitation_code", "");
+									user_copy.put("credit", credit_defalt);
+									user_copy.put("nickname", usernametxt);
+									user_copy.put("username", phonetxt);
+									user_copy.setACL(acl);
+									user_copy.saveInBackground();
 									
 									Log.d("App", "Error: " + e.getMessage());
 									Toast.makeText(getApplicationContext(),

@@ -55,7 +55,8 @@ public class Alert_Fragment extends Fragment {
         			"alertlist_date",
         			"alertlist_id_process",
         			"alertlist_credit_absolute",
-        			"alertlist_index"
+        			"alertlist_index",
+        			"alertlist_symbol"
         		
         		}, 
                 
@@ -67,12 +68,13 @@ public class Alert_Fragment extends Fragment {
         			R.id.alertlist_date, 
         			R.id.alertlist_id_process,
         			R.id.alertlist_credit_absolute,
-        			R.id.alertlist_index
+        			R.id.alertlist_index,
+        			R.id.alertlist_symbol
         		
         		}
         
         );
-	    
+        
         //adapter.notifyDataSetChanged();
         
         //Adapter for ListView
@@ -116,7 +118,7 @@ public class Alert_Fragment extends Fragment {
 	                +'\n'
 	                
 	                )
-	                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+	                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {   //this is the part of Accept
 	                	
 	                    public void onClick(DialogInterface dialog, int which) { 
 	                    	
@@ -272,7 +274,7 @@ public class Alert_Fragment extends Fragment {
 	                    }
 	                    
 	                 })
-	                .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {
+	                .setNegativeButton("Refuse", new DialogInterface.OnClickListener() {   //this is the part of Refuse
 	                    public void onClick(DialogInterface dialog, int which) { 
 	                    	
 	                    	TextView id_process = (TextView) view.findViewById(R.id.alertlist_id_process);
@@ -307,10 +309,8 @@ public class Alert_Fragment extends Fragment {
 	                 })
 	                .setIcon(android.R.drawable.ic_dialog_info)
 	                 .show();
-	            	
-	            	//view.setBackgroundColor(color.grey_clair);
             	 
-            } else {
+            } else { //this is the part of Cancel
             	
             	new AlertDialog.Builder(getActivity())
                 .setTitle("Request")
@@ -362,8 +362,6 @@ public class Alert_Fragment extends Fragment {
                  })
                 .setIcon(android.R.drawable.ic_dialog_info)
                  .show();
-            	
-            	//view.setBackgroundColor(color.white);
             	
             }
             	

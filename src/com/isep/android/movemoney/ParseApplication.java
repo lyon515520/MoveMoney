@@ -2,6 +2,7 @@ package com.isep.android.movemoney;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseCrashReporting;
  
 import com.parse.ParseUser;
  
@@ -12,7 +13,9 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
- 
+        
+        ParseCrashReporting.enable(this);
+        
         // Add your initialization code here
         Parse.initialize(this, "yzehjWOCtp5AcQWSAfyWvY39oAy08L3oztNl0tem", "jq1Wda3ZJKGGVlWnLm2JCdLk7vAGW4zqk2jhwW0s");
  

@@ -43,7 +43,6 @@ public class Recharge_Fragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				String amount = recharge.getText().toString();
-			
 				if(amount.startsWith("0")
 						||amount.startsWith("1")
 						||amount.startsWith("2")
@@ -56,7 +55,6 @@ public class Recharge_Fragment extends Fragment {
 						||amount.startsWith("9")
 						||amount.startsWith("."))
 				{
-					
 						
 				
 					credit_add = Double.parseDouble(recharge.getText().toString());
@@ -98,7 +96,7 @@ public class Recharge_Fragment extends Fragment {
 						ParseObject process = new ParseObject("Process");
 						process.put("process_credit", credit_add);
 						String name1 = user.getString("nickname");
-						String phonenumber1 = user.getString("username");
+						String phonenumber1 = user.getUsername();
 						process.put("phonenumber1", phonenumber1);
 						process.put("phonenumber2", phonenumber1);
 						process.put("user1", name1);

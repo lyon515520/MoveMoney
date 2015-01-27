@@ -258,12 +258,12 @@ public class Demande_Fragment extends Fragment {
 									
 									ParseUser user = ParseUser.getCurrentUser();
 									//
-									demande_demanderNo = user.getString("username");
+									demande_demanderNo = user.getUsername();
 									demande_demanderName = user.getString("nickname");
 									 
 									process.put("user1", user.getString("nickname"));
-									process.put("phonenumber1", user.getString("username"));  //this part is to store the data of Sender in Parse
-									process.put("parent", user);                           
+									process.put("phonenumber1", demande_demanderNo);  //this part is to store the data of Sender in Parse
+									//process.put("parent", user);                           
 									
 									ParseQuery<ParseObject> query = ParseQuery.getQuery("User_copy");
 									query.whereEqualTo("username", demande_numbertxt);
