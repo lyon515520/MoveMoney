@@ -119,7 +119,7 @@ public class RegisterActivity extends Activity {
 				}else {
 					
 					ParseUser user = new ParseUser();
-					user.put("nickname", usernametxt);
+					//user.put("nickname", usernametxt);
 					user.setUsername(phonetxt); /*set the phone number as the username, because in Parse the username is unique and is defaultly used in Login function*/
 					user.setPassword(pwdtxt);
 					
@@ -143,6 +143,7 @@ public class RegisterActivity extends Activity {
 									double credit_new = credit + 50;
 									userData.put("credit", credit_new);
 									userData.saveInBackground();
+									
 									user_copy.put("invitation_code", invitortxt);
 									user_copy.put("credit", credit_defalt + 50);
 									user_copy.put("nickname", usernametxt);
