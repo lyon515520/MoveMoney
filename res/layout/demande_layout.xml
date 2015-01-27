@@ -2,49 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal" >
+    android:gravity="center_horizontal"
+    android:background="@layout/body_gradient" >
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="30px"
+        android:paddingRight="30px" >
 		
-		<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="6"  >
-		
-        <EditText
-            android:id="@+id/demande_target"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:hint="Mobile number"
-            android:inputType="numberDecimal" 
-			android:layout_weight="2" >
-
-            <requestFocus />
-        </EditText>
-		
-		<Button
-             android:id="@+id/contact_list_demande"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="20dp"
-             android:layout_weight="4"
-             android:background="@drawable/ic_contact"
-             android:gravity="center"
-             android:padding="20dp" />
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_weight="6"
+	        android:layout_marginTop="30dp" >
+			
+	        <EditText
+	            android:id="@+id/demande_target"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/style_edittext"
+	            android:layout_margin="10dp"
+	            android:paddingLeft="20px"
+	            android:paddingTop="15px"
+	            android:paddingBottom="15px"
+	            android:ems="10"
+	            android:hint="Mobile number"
+	            android:inputType="numberDecimal" 
+				android:layout_weight="2" >
+	
+	            <requestFocus />
+	        </EditText>
+	        
+	        
+			
+			<Button
+	             android:id="@+id/contact_list_demande"
+	             android:layout_width="60dp"
+	             android:layout_height="wrap_content"
+	             android:layout_margin="10dp"
+	             android:background="@drawable/ic_contact"
+	             android:gravity="center"
+	             android:padding="20dp" />
         
-       </LinearLayout>
+       	</LinearLayout>
         
         <EditText
             android:id="@+id/demande_amount"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:background="@drawable/style_edittext"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="20px"
+            android:paddingTop="15px"
+            android:paddingBottom="15px"
             android:ems="10"
             android:hint="Amount"
             android:inputType="numberDecimal" >
@@ -54,8 +70,14 @@
             android:id="@+id/demande_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/style_btn_login"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="25dp"
             android:text="Demande Now" />
 
     </LinearLayout>

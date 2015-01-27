@@ -60,7 +60,7 @@ public class Account_Fragment extends Fragment {
 					
 					credit_currenttv = (TextView) rootview.findViewById(R.id.account_credit);
 					
-					credit_currenttv.setText(String.valueOf(credit)+" euros");
+					credit_currenttv.setText(String.valueOf(credit)+" \u20ac");
 					
 				} else {
 					

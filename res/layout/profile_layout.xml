@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal" >
+    android:gravity="center_horizontal"
+    android:background="@layout/body_gradient" >
     
     <LinearLayout 
         android:layout_width="fill_parent"
@@ -39,27 +40,39 @@
 	                android:layout_weight="1.0"
 	                android:padding="10dp"
 	                android:text="Mobile:"
+	                android:textColor="@color/white"
 	                android:textSize="15sp"
-	                android:textStyle="bold" />
+	                android:textStyle="bold"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <TextView
 	                android:id="@+id/profile_phonenumber"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
-	                android:padding="10dp"
+	                android:textColor="@color/white"
+	                android:background="@drawable/style_profile"
+	                android:paddingLeft="20px"
+		            android:paddingTop="5px"
+		            android:paddingBottom="5px"
 	                android:text="null"
-	                android:textSize="15sp" />
+	                android:textSize="15sp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <Button
 	                android:id="@+id/btn_invisible1"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
+	                android:textColor="@color/white"
 	                android:padding="10dp"
 	                android:text="modify"
 	                android:textSize="15sp"
-	                android:visibility="invisible" />
+	                android:visibility="invisible"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	
 	        </LinearLayout>
 	
@@ -74,19 +87,28 @@
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
+	                android:textColor="@color/white"
 	                android:text="Credit:"
 	                android:padding="10dp"
 	                android:textSize="15sp"
-	                android:textStyle="bold" />
+	                android:textStyle="bold"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <TextView
 	                android:id="@+id/profile_credit"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
-	                android:padding="10dp"
+	                android:textColor="@color/white"
+	                android:background="@drawable/style_profile"
+	                android:paddingLeft="20px"
+		            android:paddingTop="5px"
+		            android:paddingBottom="5px"
 	                android:text="null"
-	                android:textSize="15sp" />
+	                android:textSize="15sp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <Button
 	                android:id="@+id/btn_invisible2"
@@ -94,9 +116,12 @@
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
 	                android:padding="10dp"
+	                android:textColor="@color/white"
 	                android:text="modify"
 	                android:textSize="15sp"
-	                android:visibility="invisible" />
+	                android:visibility="invisible"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	
 	        </LinearLayout>
 	
@@ -111,33 +136,55 @@
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
+	                android:textColor="@color/white"
 	                android:text="Username:"
 	                android:padding="10dp"
 	                android:textSize="15sp"
-	                android:textStyle="bold" />
+	                android:textStyle="bold"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <TextView
 	                android:id="@+id/profile_username"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1.0"
-	                android:padding="10dp"
+	                android:textColor="@color/white"
+	                android:background="@drawable/style_profile"
+	                android:paddingLeft="20px"
+		            android:paddingTop="5px"
+		            android:paddingBottom="5px"
 	                android:text="null"
-	                android:textSize="15sp" />
+	                android:textSize="15sp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	            
 	            <Button
-	                android:id="@+id/btn_profile_username"
+	                android:id="@+id/btn_invisible3"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
-	                android:layout_marginBottom="3dp"
-	                android:layout_marginLeft="5dp"
-	                android:layout_marginTop="3dp"
 	                android:layout_weight="1.0"
 	                android:padding="10dp"
+	                android:textColor="@color/white"
 	                android:text="modify"
-	                android:textSize="15sp" />
+	                android:textSize="15sp"
+	                android:visibility="invisible"
+	                android:layout_marginLeft="5dp"
+	                android:layout_marginRight="5dp" />
 	
 	        </LinearLayout>
+	        
+	        <Button
+                android:id="@+id/btn_profile_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/style_btn_login"
+                android:textStyle="bold"
+            	android:textSize="25dp"
+                android:text="change username"
+                android:textColor="@color/white" />
 	
 	    </LinearLayout>
     

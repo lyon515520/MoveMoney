@@ -63,7 +63,7 @@ public class Profile_Fragment extends Fragment {
 					
 					usernametv.setText(username);
 					phonenumbertv.setText(phonenumber);
-					credittv.setText(String.valueOf(credit)+" euros");
+					credittv.setText(String.valueOf(credit)+" \u20ac");
 					
 					btn_profile_username.setOnClickListener(new View.OnClickListener() {
 

@@ -6,21 +6,19 @@
   android:fillViewport="true">
   <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:background="#fff">
+        android:layout_height="wrap_content" android:background="@color/blue">
  
         <!--  Header  Starts-->
         <LinearLayout android:id="@+id/header"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@layout/header_gradient"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip">
+                android:background="@layout/header_gradient" >
                 <!-- Logo Start-->
 
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/logo_white" />
 
                 <!-- Logo Ends -->
         </LinearLayout>
@@ -35,8 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dip" >
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp" >
 
           <!-- Full Name Label -->
           <!--  Email Label -->
@@ -47,9 +45,13 @@
                 android:id="@+id/phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="46dp"
+                android:layout_marginBottom="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
                 android:ems="10"
                 android:hint="Phone number *"
+                android:background="@drawable/style_edittext"
                 android:inputType="phone" >
 
                 <requestFocus />
@@ -59,6 +61,11 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:layout_marginBottom="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
                 android:ems="10"
                 android:hint="Username *" />
 
@@ -66,6 +73,11 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:layout_marginBottom="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
                 android:ems="10"
                 android:hint="Password *"
                 android:inputType="textPassword" />
@@ -74,6 +86,11 @@
                 android:id="@+id/confirmationpwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:layout_marginBottom="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
                 android:ems="10"
                 android:hint="Confirmation of password *"
                 android:inputType="textPassword" />
@@ -82,6 +99,11 @@
                 android:id="@+id/invitor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style_edittext"
+                android:layout_marginBottom="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
                 android:ems="10"
                 android:hint="Invitation code"
                 android:inputType="phone" />
@@ -89,20 +111,24 @@
           <Button android:id="@+id/btnRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:text="Register New Account"/>
+                android:background="@drawable/style_btn_login"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/white"
+                android:text="Register New Account"
+                android:textSize="20dip"
+                android:textStyle="bold"/>
           <!-- Link to Login Screen -->
 
           <TextView
               android:id="@+id/link_to_login"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_marginBottom="40dip"
-              android:layout_marginTop="40dip"
+              android:layout_marginTop="10dip"
               android:gravity="center"
               android:text="Login here"
-              android:textColor="#0b84aa"
-              android:textSize="20dip" />
+              android:textColor="@color/white"
+              android:textSize="20dip"
+              android:textStyle="bold" />
  
         </LinearLayout>
         <!-- Registration Form Ends -->
