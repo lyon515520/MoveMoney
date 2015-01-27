@@ -8,8 +8,10 @@ public class sms{
 
 
 	public void sendSMS(String type, String receiver, String senderNo, String senderName) {
+		//This is the test code
+		//String message = "To " + receiver + ": ";
 		
-		String message = "To " + receiver + ": ";
+		String message = new String();
 		String sender = senderName + " (" + senderNo + ")";
 		
 		if((type=="send_success")||(type=="demande_success")||(type=="invite"))
@@ -30,7 +32,7 @@ public class sms{
 		
 		
 		//for test, messages are send to one mobile
-		receiver = "0667413795";
+		//receiver = "0667413795";
 
          SmsManager smsManager = SmsManager.getDefault();
          smsManager.sendTextMessage(receiver, null, message, null, null);
