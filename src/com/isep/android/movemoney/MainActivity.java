@@ -1,5 +1,7 @@
 package com.isep.android.movemoney;
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
 
 import android.app.ActionBar;
@@ -202,6 +204,10 @@ public class MainActivity extends Activity
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
+					
+					ParseUser user = ParseUser.getCurrentUser();
+					String username_current = user.getString("nickname");
+					String phonenumber_current = user.getUsername();
 					
 					EditText invitation_mobile = (EditText) view.findViewById(R.id.invitation_mobile);
 					String invitation_mobiletxt = invitation_mobile.getText().toString();
