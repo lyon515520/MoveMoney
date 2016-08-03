@@ -1,5 +1,4 @@
 # MoveMoney
-this is the Android Application of 3rd year's project in ISEP
 
 -----fonctionality-----
 1. user inscrit and login with the phone number
